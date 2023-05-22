@@ -1,0 +1,287 @@
+## Understanding Xeto Libraries
+
+### What are Xeto Libraries?
+
+In the Xeto ecosystem, libraries are collections of Specs/Types that define structured data models. They are like reusable blueprints that can be used across multiple projects. For example, a 'Building' library might include Specs for 'HVAC', 'Elevator', 'Door', etc.
+
+Here's an example of what a spec might look like in a Xeto library:
+
+```
+TeslaCar:Car {
+  make: Str;
+  model: "Model-S";
+  year: Num;
+}
+```
+
+### How to Use Xeto Libraries
+
+Using a Xeto library involves importing the relevant Specs/Types into your project. Once imported, you can create instances based on these Specs/Types. 
+
+For example below you are creating an instance of a TeslaCar, which already was extended by a car. So you can see you don't need to write it's a Model-S, because it is already set in the TeslaCar, so below I only added the year.
+
+```
+myCar: TeslaCar{
+    year:"2020"
+}
+```
+
+### Building Your Own Xeto Libraries
+
+Creating your own Xeto library involves defining Specs/Types and packaging them together in a way that they can be easily imported into other projects.
+
+1. **Define Specs/Types**: Start by defining the Specs/Types that you want to include in your library.
+
+    ```
+    TeslaCar: Car {
+      make: Str;
+      model: Str;
+      year: Num;
+    }
+    ```
+
+2. **Package Your Library**: Once you have defined all the Specs/Types, package them together using the tools provided by the Xeto ecosystem. This usually involves creating a .xeto file that includes all your Specs/Types.
+    Here is an example of a Onicon Meter Xeto Spec/Template.
+
+# Onicon F-4300 Flow Meter Spec
+
+The `OniconF4300FlowMeter` specification file in Xeto is divided into three main sections: `points`, `attributes`, and `resources`. Each of these sections contributes to the complete specification of the `OniconF4300FlowMeter`, which extends from a base `FlowMeter` type.
+
+## Points
+
+`Points` represent the various data that the flow meter can measure and report. They extend the `Sensor` type and have an associated `bacnetAddr` which likely corresponds to the sensor's address on a BACnet network. Here are a few examples:
+
+- `OniconFlowVelocitySensor`: Represents the velocity at the meter.
+- `OniconFlowRateSensor`: Represents the volume flow rate at the meter.
+- `OniconSonicVelocitySensor`: Represents the speed of sound through the liquid.
+- ...
+
+## Attributes
+
+`Attributes` contain additional descriptive information about the flow meter. They extend the base `Attr` type. A few examples include:
+
+- `Manufactor`: The manufacturer's company name, in this case, `"Onicon"`.
+- `ModelNum`: The equipment model number, here it is `"F-4300"`.
+- `AmbientOperatorMinTemp`: The minimum ambient operating temperature, `" -5°F"`.
+- ...
+
+## Resources
+
+`Resources` are the additional reference files associated with the flow meter. They can be of different types like `PdfDocument`, `AutoCadDocument`, `WordDocument`, `ExcelDocument`, etc. Each resource has an associated `uri` that points to the location of the resource. For instance:
+
+- F-4300 Clamp-on Ultrasonic Flow Meter Manual: `PdfDocument & Manual`
+- F-4300 Clamp-on Ultrasonic Flow Meter – 10 Series Transducer Dimensions: `AutoCadDocument`
+- F-4300 Clamp-on Ultrasonic Flow Meter – Firmware Update Procedure: `PdfDocument`
+- ...
+
+
+```
+//
+// Onicon F-4300 Clamp-on Ultrasonic Flow Meter / Thermal Energy Measurement System.
+//
+// **Ideal Solution for Retrofits and Baseline Monitoring** Clamp-on transducers allow
+// for quick and easy installation with no system shutdown and no pressure drop. Each
+// meter is provided with a built-in 128 megabyte data logger, making it an ideal solution
+// for baseline monitoring.
+//
+// **Simple to Install and Commission**  Every ONICON F-4300 is individually configured
+// and programmed using customer specific application data. Complex field programming
+// is not required.
+//
+// **High Confidence and Reliability** ONICON provides transducers that are optimized
+// for specific pipe conditions, providing a strong, stable signal with an outstanding
+// signal-to-noise ratio.
+//
+// **Native BACnet and MODBUS Communications**  The F-4300 is provided with a single
+// RS485 output that can be configured to operate on BACnet® MS/TP or MODBUS® RTU networks.
+//
+OniconF4300FlowMeter: FlowMeter {
+
+  // Points
+  points: {
+    OniconFlowVelocitySensor
+    OniconFlowRateSensor
+    OniconSonicVelocitySensor
+    OniconSignalStrengthSensor
+    OniconTotalVolumeSensor
+    OniconAvgFlowSensor
+    OniconPrevDayVolumeSensor
+    OniconRelay1Sensor
+    OniconRelay2Sensor
+  }
+
+  // Attributes
+  attrs: {
+    Manufactor { val: "Onicon" }
+    ModelNum { val: "F-4300" }
+    AmbientOperatorMinTemp { val: -5°F }
+    AmbientOperatorMaxTemp { val: 140°F }
+    CoolingMinTemp { val:32°F }
+    CoolingMaxTemp { val:77°F }
+    HeatingMinTemp { val:140°F }
+    HeatingMaxTemp { val:212°F }
+  }
+
+  // Supporting resource files
+  resources: {
+
+    // F-4300 Clamp-on Ultrasonic Flow Meter Manual
+    PdfDocument & Manual {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-clamp-on-ultrasonic-flow-meter-manual-doc-0003010.pdf"
+    }
+
+    // F-4300 Clamp-on Ultrasonic Thermal Energy Measurement System Installation & Operation Addendum
+    PdfDocument & InstallationGuide {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-thermal-energy-measurement-system-manual-doc-0004075.pdf"
+    }
+
+    // F-4300 Clamp-on Ultrasonic Flow Meter/ Thermal Energy Measurement System Catalog Sheet
+    PdfDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-clamp-on-ultrasonic-flow-meter-catalog-sheet-doc-0002706.pdf"
+    }
+
+    // F-4300 Clamp-on Ultrasonic Flow Meter/ Thermal Energy Measurement System Guide Specification
+    WordDocument & CutSheet {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-guide-specification.docx"
+    }
+
+    // F-4300 Clamp-on Ultrasonic Flow Meter – 10 Series Transducer Dimensions
+    AutoCadDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-10-series-transducer-dimensions-doc-000343.dwg"
+    }
+
+    // F-4300 Clamp-on Ultrasonic Flow Meter – 20 Series Transducer Dimensions
+    AutoCadDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-20-series-transducer-dimensions-doc-000344.dwg"
+    }
+
+    // F-4300 Clamp-on Ultrasonic Flow Meter – 30 Series Transducer Dimensions
+    AutoCadDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-30-series-transducer-dimensions-doc-000345.dwg"
+    }
+
+    // F-4300 Clamp-on Ultrasonic Flow Meter – Enclosure Dimensions
+    AutoCadDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-series-enclosure-dimensions-doc-000342.dwg"
+    }
+
+    // F-4300 Clamp-on Ultrasonic Flow Meter Revit Package
+    AutoCadDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-flow-meter-revit-package-DOC-0004316.zip"
+    }
+
+    // Installation Guide for Clamp-on Thermowells
+    PdfDocument & InstallationGuide {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-install-hardware-instruction-for-clamp-on-thermowells-doc-0004103.pdf"
+    }
+
+    // F-4300 Clamp-on Ultrasonic Flow Meter – Firmware Update Procedure
+    PdfDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-firmware-update-procedure-doc-0003794.pdf"
+    }
+
+    // F-4300 Clamp-on Ultrasonic Flow Meter – Hardware and Transducer Update
+    PdfDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-hardware-and-transducer-update-procedure-doc-0003825.pdf"
+    }
+
+    // F-4300 Clamp-on Ultrasonic Flow Meter/ Thermal Energy Measurement System Submittal
+    PdfDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-clamp-on-ultrasonic-flow-meter-submittal-doc-0003648.pdf"
+    }
+
+    // F-4300 Clamp-on Ultrasonic Flow Meter/ Thermal Energy Measurement System Application and Ordering Guide
+    PdfDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/f-4300-application-and-ordering-guide-doc-0003269.pdf"
+    }
+
+    // ONICON-Product-Comprehensive-Order-Form_-Macro-Enabled-Workbook_Rev-18-RECOMMENDED
+    ExcelDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/2023/01/ONICON-Product-Comprehensive-Order-Form_-Macro-Enabled-Workbook_Rev-18-RECOMMENDED.xlsm"
+    }
+
+    // ONICON-Product-Comprehensive-Order-Form-Workbook_Rev-16
+    ExcelDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/ONICON-Product-Comprehensive-Order-Form-Workbook_Rev-16.xlsx"
+    }
+
+    // ONICON F-4300 Logger Utility Software - Version V2.90
+    AutoCadDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/ONICON-F-4300-Logger-Utility-Software-Version-V2.90-1.zip"
+    }
+
+    // DiagnosticGui Setup 3.0.19244.2942
+    Resource {
+      uri: "https://www.onicon.com/wp-content/uploads/2022/10/DiagnosticGui_Setup_3.0.19244.29420.msi"
+    }
+
+    // Software Versions
+    TextDocument {
+      uri: "https://www.onicon.com/wp-content/uploads/2022/10/software_versions.txt"
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////
+// Points
+//////////////////////////////////////////////////////////////////////////
+
+// Velocity at the meter
+OniconFlowVelocitySensor: Sensor { bacnetAddr:"AI 1" }
+
+// Volume flow rate at the meter
+OniconFlowRateSensor: Sensor { bacnetAddr:"AI 2" }
+
+// Speed of sound through the liquid
+OniconSonicVelocitySensor: Sensor { bacnetAddr:"AI 3" }
+
+// Flow transducer signal strength
+OniconSignalStrengthSensor: Sensor { bacnetAddr:"AI 4" }
+
+// Total flow volume
+OniconTotalVolumeSensor: Sensor { bacnetAddr:"AV 1" }
+
+// Average flow rate for previous day
+OniconAvgFlowSensor: Sensor { bacnetAddr:"AV 3" }
+
+// Volume total for previous day
+OniconPrevDayVolumeSensor: Sensor { bacnetAddr:"AV 4" }
+
+// Indicates current state of relay 1
+OniconRelay1Sensor: Sensor { bacnetAddr:"BV 2" }
+
+// Indicates current state of relay 2
+OniconRelay2Sensor: Sensor { bacnetAddr:"BV 3" }
+
+//////////////////////////////////////////////////////////////////////////
+// Attributes
+//////////////////////////////////////////////////////////////////////////
+
+Attr: { attr }
+
+// Manufactor company name
+Manufactor: Attr { manufactor }
+
+// Equipment model number
+ModelNum: Attr { modelNum }
+
+// Max rated ambient operating temperature
+AmbientOperatorMinTemp: Attr { ambient, operating, min, rated, temp }
+
+// Max rated ambient operating temperature
+AmbientOperatorMaxTemp: Attr { ambient, operating, max, rated, temp }
+
+// Min rated temperature for cooling applications for 1K sensors
+CoolingMinTemp: Attr { cooling, min, rated, temp }
+
+// Max rated temperature for cooling applications for 1K sensors
+CoolingMaxTemp: Attr { cooling, max, rated, temp }
+
+// Min rated temperature for heating applications for 2K sensors
+HeatingMinTemp: Attr { heating, min, rated, temp }
+
+// Max rated temperature for heating applications for 2K sensors
+HeatingMaxTemp: Attr { heating, max, rated, temp }
+```
+
+3. **Publish Your Library**: Finally, you can publish your library to a repository, such as the Xeto library repository. Once published, other developers can easily import and use your Specs/Types in their projects.

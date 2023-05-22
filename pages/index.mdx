@@ -1,3 +1,31 @@
-# Welcome to Nextra
- 
-Hello, world!
+# Introduction to Xeto
+
+## What is Xeto?
+
+Xeto is an extensible explicitly typed object system that provides a structured, efficient, and scalable way to create and use data models. In many ways, it is like TypeScript and JSON had a baby. With Xeto, developers can create typed specifications, or Specs, for different entities, providing a template that allows for the generation of instance data.
+
+Here are three key features of Xeto:
+
+- **Specs/Types**: Xeto enables you to create a Spec or a Type, which serves as a template for things. For instance, you could define a "Tesla Car" Type that specifies the car has four wheels and a certain type of engine. This allows you to generate instance data, such as the owner of a particular Tesla car, where it was bought, and how many were sold in total.
+
+- **Query**: Having created a Spec, you can use it to query a database. For example, you could query the database for all instances of the "Tesla Car" Type.
+
+- **Validation**: You can use a Spec to validate the data returned from a server. If you retrieve data purporting to represent a Tesla car, you can check it against the "Tesla Car" Spec to ensure it's legitimate.
+
+## Who uses Xeto and why?
+
+Xeto is used by a broad range of professionals, including system integrators, building owners, mechanical engineers, and Original Equipment Manufacturers (OEMs). With Xeto, these users can readily access an online documentation portal (Xeto.dev) that showcases detailed specifications for a wide array of entities. 
+
+For instance, if we continue with the "Tesla Car" Type, users can explore comprehensive details about the car - such as its size, the number of doors, the sensors it includes, its maximum speed, user manuals, and even videos of the car in action. This gives system integrators, developers, and other users the ability to see what's in the Spec and consider how it might be implemented in a building or job. 
+
+While Xeto was originally developed with commercial buildings in mind, the technology is universally applicable and can be leveraged anywhere due to its capability to create libraries of Specs/Types that anyone can consume.
+
+## Brief History of Xeto
+
+Xeto was born out of necessity. Project Haystack had tags and models of tags that could be implemented into buildings, but there was no easy way to create libraries of these tags, such as libraries for Air Handling Units (AHUs), Meters, Cars, Devices, etc. There was also a need for a new way to validate these tags and to verify if they were implemented correctly. 
+
+Xeto addresses these issues by providing a systematic approach to creating, managing, and validating Specs/Types. The best part? It's open source and part of an open community. In many ways, Xeto is to Specs/Types what NPM is to JavaScript.
+
+## Basic concepts in Xeto 
+
+At the heart of Xeto are the concepts of Specs and Types. A Spec, short for specification, is a blueprint or description of an entity. It provides structured information about what properties an entity has and how it can be interacted with. Types are a fundamental aspect of Specs, as they define the kind of data a property can have. With Xeto, developers can create new Types, extending existing ones, providing the flexibility to accurately represent complex entities.

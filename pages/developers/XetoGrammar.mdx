@@ -1,0 +1,100 @@
+# Grammar in Programming Languages
+
+In the context of programming languages, grammar is a set of structural rules that governs the composition of statements, expressions, and other constructs in a programming language. It dictates how symbols in the language can be combined to create valid programs.
+
+# Grammar in Xeto
+
+The Xeto language also has its own grammar, which guides how different components of a Xeto file are structured. Here are some important examples:
+
+1. `<objs>`: This defines a series of objects, each followed by an `<endOfObj>`.
+2. `<obj>`: An object can have an optional `<leadingDoc>`, followed by either a `<markerOnly>`, `<named>`, or `<unnamed>`, and an optional `<trailingDoc>`.
+3. `<body>`: The body of an object includes an optional `<spec>` and a `<childrenOrVal>`, with at least one of these being mandatory.
+4. `<spec>`: The spec consists of a `<type>` and an optional `<meta>`.
+5. `<type>`: The type can be a `<typeMaybe>`, `<typeAnd>`, `<typeOr>`, or `<typeSimple>`.
+6. `<qname>`: This represents a qualified name and consists of one or more `<name>` separated by a period (`.`).
+7. `<name>`: A name starts with an `<alpha>` and can be followed by zero or more `<nameRest>`.
+8. `Values`: Scalar values in Xeto may take the form of a single double-quoted string, a triple double-quoted string, or numbers with embedded units/symbols.
+
+These grammar rules provide a formal structure for Xeto files, ensuring that they can be read and interpreted consistently.
+
+## Xeto Grammar
+The below Grammar can be found [gitHub for Xeto Grammar](https://github.com/haxall/haxall/blob/3abe1c897825a79d3cae5a428013b8cf3fb7a755/src/core/xeto/grammar.txt#L4)
+
+```
+
+
+
+Productions [#productions]
+**************************
+
+  <objs>             :=  [<obj> <endOfObj>]*
+  <endOfObj>         :=  ( [","] <nl> ) | ","
+  <obj>              :=  [<leadingDoc>] ( <markerOnly> | <named> | <unnamed> ) [<trailingDoc>]
+  <markerOnly>       :=  <markerName>
+  <named>            :=  <name> ":" <body>
+  <unnamed>          :=  <body>
+  <body>             :=  [<spec>] [<childrenOrVal>]  // must have at least one of these productions
+  <childrenOrVal>    :=  <children> | <val>
+  <children>         :=  "{" <objs> "}"
+
+  <spec>             :=  <type> [<meta>]
+  <meta>             :=  "<" <objs> ">"
+  <type>             :=  <typeMaybe> | <typeAnd> | <typeOr> | <typeSimple>
+  <typeMaybe>        :=  <typeSimple> "?"
+  <typeAnd>          :=  <typeSimple> ("&" <typeSimple>)+
+  <typeOr>           :=  <typeSimple> ("|" <typeSimple>)+
+  <typeSimple>       :=  <qname>
+
+  <leadingDoc>       := (<lineComment>)*
+  <trailingDoc>      := <lineComment>
+
+  <qname>            :=  <name> ("." <name>)* ["::" <name>]
+  <name>             :=  <alpha> (<nameRest>)*
+  <markerName>       :=  <alphaLower> (<nameRest>)*
+  <nameRest>         :=  alpha | digit | '_'
+  <alpha>            :=  alphaLower | alphaUpper
+  <alphaLower>       :=  'a' - 'z'
+  <alphaUpper>       :=  'A' - 'Z'
+  <digit>            :=  '0' - '9'
+
+  <val>              :=  see below
+
+Values
+******
+Scalar values may take one of the following formats:
+  - single double-quoted string such as "hi"
+  - triple double-quoted strings such as """my name is "Brian", hi!"""
+  - numbers with embedded units/symbols such as 123% or 2023-03-04
+
+Quoted strings use the same backslash escape sequence as C languages:
+  - '\n'  for newline
+  - '\\'  for backslash itself
+  - '\"' for double-quote itself (triple quoted string does not require escaping)
+  - '\u2023" unicode hex value
+
+Number literals must start with an ASCII digit or "-" followed by an ASCII digit.
+Any of the following characters are matched to tokenize the number literal:
+  - ASCII digit or letter 0-9, A-Z, a-z
+  - "." dot (0x2E)
+  - "-" dash (0x2D)
+  - ":" colon (0x3A)
+  - "/" forward slash (0x2F)
+  - "$" dollar sign (0x24)
+  - "%" percent sign (0x25)
+  - any Unicode character > 0x7F
+
+Legend [#legend]
+****************
+Legend for BNF Grammar:
+  :=      is defined as
+  <x>     non-terminal
+  "x"     literal
+  'x'     char literal
+  [x]     optional
+  (x)     grouping
+  s-e     inclusive char range
+  x*      zero or more times
+  x+      one or more times
+  x|x     or
+```
+

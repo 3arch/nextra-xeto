@@ -1,0 +1,46 @@
+## 9. Templates in Xeto: Example of a G36Vav
+
+### What is a G36Vav?
+
+A `G36Vav` (Guideline 36 Variable Air Volume) in this context is a template for a VAV terminal unit as per the standards defined in ASHRAE Guideline 36. These are designed for high-performance, automated buildings aiming to maximize energy efficiency and performance.
+
+### Creating a G36Vav Template
+
+In Xeto, a `G36Vav` type can be defined by extending a base `Vav` type and adding in points relevant to the G36 guideline. This might include a variety of sensors and setpoints. For example:
+
+```
+// Guidline 36 base type for VAVs terminal units
+G36Vav : Vav <abstract> {
+  points: {
+    ZoneAirTempSensor
+    ZoneAirTempEffectiveSp
+    ZoneOccupiedSensor
+    ZoneCo2Sensor
+    //{window, override, cmd, point}
+  }
+}
+```
+
+### Extending G36Vav to a Fan-Powered Terminal Unit
+
+In Xeto, you can also create more specific types by extending a base type. In this case, `G36FanPoweredTerminalUnit` extends `G36Vav` and adds additional characteristics and points. This model now also includes fan power, hot water heating, single duct system, and several additional sensors and command points:
+
+```
+// Guidline 36 Fan Powered Terminal Unit
+G36FanPoweredTerminalUnit : G36Vav {
+  fanPowered
+  hotWaterHeating
+  singleDuct
+  points: {
+    DischargeFanSpeedCmd
+    DischargeFanRunSensor
+    DischargeFanRunCmd
+    DischargeDamperCmd
+    HotWaterValveCmd
+    DischargeAirFlowSensor
+    DischargeAirTempSensor
+  }
+}
+```
+
+This example demonstrates how Xeto allows for defining and extending complex models of building systems that conform to industry standards.

@@ -1,0 +1,107 @@
+# Creating and Extending Types and Instances in Xeto, TypeScript, and JavaScript
+
+This document demonstrates the creation and extension of types, as well as how to create an instance, in Xeto, TypeScript, and JavaScript.
+
+## Xeto
+
+### Creating a New Type
+
+In Xeto, a new type (also known as a spec) can be created as shown below. Note the capitalization of the type name and the use of \`:\` to indicate its extension from an existing type.
+
+```
+Resource : Dict {
+    uri: Uri
+}
+```
+
+### Extending a Type
+
+In Xeto, we extend a type by creating a new type that references the parent type before the \`:\`.
+
+```
+Document : Resource {
+  document
+}
+```
+
+### Creating an Instance
+
+An instance in Xeto is created using a type and assigning values to its properties, notice that there is no `:` below when creating the new instance. It only has `ExcelDocuemnt`, this means you are creating a new instance of ExcelDocument.
+
+```
+// ONICON-Product-Comprehensive-Order-Form-Workbook_Rev-16
+ExcelDocument {
+  uri: "https://www.onicon.com/wp-content/uploads/ONICON-Product-Comprehensive-Order-Form-Workbook_Rev-16.xlsx"
+}
+```
+
+## TypeScript
+
+In TypeScript, a similar process can be done, but it is more verbose due to the explicit syntax. Here's how it would look:
+
+### Creating a New Type
+
+```
+interface Resource {
+    uri: string;
+}
+```
+
+### Extending a Type
+
+In TypeScript, types (interfaces) are extended using the \`extends\` keyword:
+
+```
+interface Document extends Resource {
+    document: any;
+}
+```
+
+### Creating an Instance
+
+Creating an instance in TypeScript is similar to JavaScript. We first create an object of the type:
+
+```
+let exampleDocument: Document = {
+    uri: "https://www.onicon.com/wp-content/uploads/ONICON-Product-Comprehensive-Order-Form-Workbook_Rev-16.xlsx",
+    document: any // Fill this with your own value
+};
+```
+
+## JavaScript
+
+JavaScript, unlike TypeScript and Xeto, does not support explicit interfaces or types. However, we can mimic similar behavior with constructor functions or classes:
+
+### Creating a New Type
+
+```
+function Resource(uri) {
+    this.uri = uri;
+}
+```
+
+### Extending a Type
+
+In JavaScript, types are "extended" by setting the prototype of the constructor function:
+
+```
+function Document(uri, document) {
+    Resource.call(this, uri);
+    this.document = document;
+}
+
+Document.prototype = Object.create(Resource.prototype);
+```
+
+### Creating an Instance
+
+Creating an instance in JavaScript is done using the \`new\` keyword:
+
+```
+let exampleDocument = new Document("https://www.onicon.com/wp-content/uploads/ONICON-Product-Comprehensive-Order-Form-Workbook_Rev-16.xlsx", any); // Replace any with your own value
+```
+
+Note that Xeto has a more compact syntax and natively supports type inheritance, unlike JavaScript. TypeScript, while more verbose, also provides powerful type safety and inheritance features.
+
+
+

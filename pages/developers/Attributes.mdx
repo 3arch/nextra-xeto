@@ -1,0 +1,38 @@
+## Understanding and Using Attributes in Xeto
+
+### What are Attributes?
+
+In Xeto, attributes are additional information or properties added to a specification. They allow the definition of characteristics or properties of a spec that may not necessarily fit into the core schema. 
+
+### How to Use Attributes in Xeto
+
+In a Xeto spec, attributes are added as follows:
+
+1. Create a new spec/type.
+2. Add an `attributes` section.
+3. Within this section, list your attributes, each having a unique name and a corresponding value.
+
+Here's a simple example:
+
+```
+MyEquipment: Equipment {
+  attributes: {
+    manufacturer: "MyCompany"
+    model: "Model123"
+  }
+}
+```
+
+### Code Examples for Attributes
+
+Here is an example of a Xeto specification where the `OniconF4300FlowMeter` spec has attributes:
+
+```
+// Onicon F-4300 flow meter
+OniconF4300FlowMeter : FlowMeter {
+  attributes: {
+    manufacturer: "Onicon"
+    model: "F-4300"
+  }
+}
+```

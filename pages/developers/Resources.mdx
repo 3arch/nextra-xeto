@@ -1,0 +1,47 @@
+## Resources in Types/Specs
+
+### What are Resources?
+
+In Xeto, resources are the files that can be linked to a specification/type. These can be anything from images, datasheets, to other relevant documents that support or provide additional context to the defined spec. The files can be hosted locally or remotely.
+
+### Adding Resources to Types/Specs
+
+In a Xeto spec, resources are added as follows:
+
+1. Create a new spec/type.
+2. Add a `resources` section.
+3. Within this section, list your resources as instances of predefined resource types such as `Image`, `Pdf`, `Document`, etc.
+4. For each resource instance, specify its `uri` - a string that points to the location of the file.
+
+Here's a simple example:
+
+```
+MyEquipment: Equipment {
+  resources: {
+    Document {
+      uri: "http://example.com/document.pdf"
+    }
+    Image {
+      uri: "http://example.com/image.jpg"
+    }
+  }
+}
+```
+
+### Code Examples for Resources
+
+Here is an example of a Xeto specification where the `OniconF4300FlowMeter` spec has resources linked to it:
+
+```
+// Onicon F-4300 flow meter
+OniconF4300FlowMeter : FlowMeter {
+  resources: {
+    Pdf {
+      uri: "https://www.onicon.com/wp-content/uploads/ONICON-F-4300-Clamp-On-Ultrasonic-Flow-Meter-For-Water-Based-Liquids-Specification-Sheet.pdf"
+    }
+    Image {
+      uri: "https://www.onicon.com/wp-content/uploads/F-4300-Ultrasonic-Flow-Meter1-1024x724.jpg"
+    }
+  }
+}
+```

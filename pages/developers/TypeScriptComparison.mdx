@@ -1,0 +1,65 @@
+# Xeto, TypeScript, and Metadata
+
+Metadata, also known as decorators or annotations in other programming languages, is a method for adding additional data to code constructs such as classes, methods, or properties.
+
+## Xeto
+
+In Xeto, metadata can be attached to a type or spec. This is demonstrated in the following example, where we create a new type `Document` extending from `Resource`, and include metadata `foo`, `year`, and `test`:
+
+```
+Document : Resource<foo,year:"2020",test:MySites> {
+  document
+}
+```
+
+In this example, `foo` is a marker tag, `year` is a number tag with a value of `2020`, and `test` is another tag whose value is a Type/Spec called `MySites`. These tags within the angled brackets (`< >`) constitute the metadata of the `Document` type.
+
+## TypeScript
+
+In TypeScript, a similar feature to metadata is provided through the concept of `decorators`. Decorators are a special kind of declaration that can be attached to a class declaration, method, accessor, property, or parameter.
+
+Consider this example:
+
+```
+@foo
+@year(2020)
+@test(MySites)
+class Document extends Resource {
+    document: any;
+}
+```
+
+Here, `@foo`, `@year`, and `@test` are decorators applied to the `Document` class. The `foo` decorator corresponds to a marker, while the `year` and `test` decorators correspond to the tags in Xeto's metadata. The `@` symbol is used to apply a decorator to a class.
+
+However, please note that decorators are an experimental feature of TypeScript as of September 2021, and their usage may change in future releases.
+
+
+In Xeto:
+
+```
+Resource : Dict{
+    uri: Str
+    year: Num "2019"   
+}
+```
+
+In TypeScript:
+
+```
+class Resource {
+    uri: string;
+    year: number = 2019;
+}
+```
+
+In Xeto, we're defining a new specification type called `Resource` which extends a built-in specification `Dict`. This `Resource` type has two slots `uri` and `year`, with `uri` being of type `Str` and `year` being of type `Num` with an initial value of 2019. 
+
+In TypeScript, we're defining a new class called `Resource` which has two properties `uri` and `year`. The `uri` property is of type `string` and the `year` property is of type `number` with an initial value of 2019.
+
+The key differences between these two languages in this scenario are:
+
+1. Xeto is a declarative language for data modeling where we specify "what" rather than "how". It focuses on the structure and semantics of the data. On the other hand, TypeScript is a programming language which includes mechanisms for creating, managing and manipulating objects and classes.
+
+2. In Xeto, we are extending from a built-in specification `Dict` whereas in TypeScript we are creating a new class from scratch.
+
+3. The way we specify types and initialize them is different in the two languages. In Xeto, we use `Str` and `Num` types with the values enclosed in double-quotes, whereas in TypeScript, we use `string` and `number` types and the values are not enclosed in quotes.
