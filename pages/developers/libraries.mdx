@@ -6,7 +6,7 @@ In the Xeto ecosystem, libraries are collections of Specs/Types that define stru
 
 Here's an example of what a spec might look like in a Xeto library:
 
-```
+```js
 TeslaCar:Car {
   make: Str;
   model: "Model-S";
@@ -20,7 +20,7 @@ Using a Xeto library involves importing the relevant Specs/Types into your proje
 
 For example below you are creating an instance of a TeslaCar, which already was extended by a car. So you can see you don't need to write it's a Model-S, because it is already set in the TeslaCar, so below I only added the year.
 
-```
+```js
 myCar: TeslaCar{
     year:"2020"
 }
@@ -32,7 +32,7 @@ Creating your own Xeto library involves defining Specs/Types and packaging them 
 
 1. **Define Specs/Types**: Start by defining the Specs/Types that you want to include in your library.
 
-    ```
+    ```tsx fileName="FooBar" 
     TeslaCar: Car {
       make: Str;
       model: Str;
