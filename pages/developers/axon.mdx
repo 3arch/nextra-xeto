@@ -3,7 +3,7 @@ Below are some Example Axon Scripts that can be called from the command line.
 
 ## [GitHub Sample Code](https://github.com/briansfrank/proto/tree/main/scripts)
 ##Points to Zinc
-Transform all concrete ph.points specs to stdout as zinc file
+Transform all concrete ph.points specs to stdout as zinc file 
 ```
 #! /usr/bin/env axon
 // find all the non-abstract points specs
@@ -33,7 +33,8 @@ print(ioWriteZinc(recs, ""), {text})
 
 ## Fits Match All.axon
 Load Project Haystack zinc data using the bravo data, and run fitsMatchAll() against it
-```
+> fits-match-all.axon https://project-haystack.org/example/download/bravo.zinc
+```js {2,4-5} filename="my Axon Foo"
 #! /usr/bin/env axon
 //
 // Run the fitsMatchAll() function on a data set loaded from URI.

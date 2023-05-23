@@ -1,13 +1,29 @@
 {
-    "libraries": "Libraries",
+  "index": {
+    "display":"hidden",
+    "title":"foo"
+  },  
+  "-- ": {
+    "type": "separator",
+    "title": "Getting Started"
+    },  
+  "libraries": "Libraries",
     "grammar": "",
-    "-- Themes": {
+    "--": {
       "type": "separator",
-      "title": "Themes"
+      "title": "Config"
     },
-    "specTemplates": "",
-    "languageComparisons": "",
-    "axon": "",
+    "specTemplates": "Spec + Templates",
+    "languageComparisons": "language Comparisons",
+    "axon": "Axon Scripts",
+    "buildScripts": "Build Scripts",
+    "creatingSpecs": "Creating Specs",
+    "futureQuestions": "Place Holder",
+    "devFAQs": "Dev Frequent Q's",
+    "-- Links": {
+      "type": "separator",
+      "title": "Links"
+    },
     "about-link": {
       "title": "About Xeto",
       "href": "/about"
