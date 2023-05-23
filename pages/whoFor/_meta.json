@@ -1,0 +1,10 @@
+{
+    "developers": {
+      "title": "Developers",
+      "type": "page"
+    },
+    "systemIntegrators": {
+      "title": "System Integrators",
+      "type": "page"
+    }
+  }

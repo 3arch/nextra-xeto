@@ -3,9 +3,19 @@
         "title": "Home",
         "type": "page"
     },
-    "developers": {
-        "title": "Developers",        
-        "type": "page"
+    "whoFor": {
+        "title": "Who's it for",        
+        "type": "menu",
+        "items":{
+            "developers":{
+                "title":"Developers",
+                "type":"page"
+            },
+            "systemIntegrators":{
+                "title":"System Integrators",
+                "type":"page"
+            }
+        }
     },
     "about": {
         "title": "About",
