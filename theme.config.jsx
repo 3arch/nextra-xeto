@@ -1,5 +1,5 @@
 export default {
-    logo: <span>Xeto Documentation</span>,
+    logo: <span>Xeto.dev</span>,
     project: {
         link: 'https://github.com/shuding/nextra'
     }

@@ -7,13 +7,21 @@
         "title": "Who's it for",        
         "type": "menu",
         "items":{
+            "buildingOwners":{
+                "title":"Building Owners",
+                "href":"/whoFor/buildingOwners"
+            },
             "developers":{
                 "title":"Developers",
-                "type":"page"
+                "href":"/whoFor/developers"
+            },
+            "oems":{
+                "title":"OEMs/ Equip Manufacturers",
+                "href":"/whoFor/oems"
             },
             "systemIntegrators":{
                 "title":"System Integrators",
-                "type":"page"
+                "href":"/whoFor/systemIntegrators"
             }
         }
     },

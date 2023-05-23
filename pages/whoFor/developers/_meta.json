@@ -19,18 +19,5 @@
     "buildScripts": "Build Scripts",
     "creatingSpecs": "Creating Specs",
     "futureQuestions": "Place Holder",
-    "devFAQs": "Dev Frequent Q's",
-    "-- Links": {
-      "type": "separator",
-      "title": "Links"
-    },
-    "about-link": {
-      "title": "About Xeto",
-      "href": "/about"
-    },
-    "projectHaystackLink": {
-      "title": "Project Haystack ↗",
-      "href": "https://project-haystack.org/doc/index",
-      "newWindow": true
-    }
+    "devFAQs": "Dev Frequent Q's"
   }
