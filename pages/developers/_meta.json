@@ -8,10 +8,6 @@
     "specTemplates": "",
     "languageComparisons": "",
     "axon": "",
-    "-- More": {
-      "type": "separator",
-      "title": "More"
-    },
     "about-link": {
       "title": "About Xeto",
       "href": "/about"
