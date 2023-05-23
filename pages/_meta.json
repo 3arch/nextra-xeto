@@ -3,9 +3,8 @@
         "title": "Home",
         "type": "page"
     },
-    "Libraries": {
-        "title": "Developers",
-        "type": "page"
+    "developers": {
+        "title": "Developers"
     },
     "about": {
         "title": "About",
