@@ -4,7 +4,8 @@
         "type": "page"
     },
     "developers": {
-        "title": "Developers"
+        "title": "Developers",        
+        "type": "page"
     },
     "about": {
         "title": "About",
