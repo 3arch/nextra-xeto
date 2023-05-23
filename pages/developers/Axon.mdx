@@ -1,0 +1,131 @@
+#Axon Script Examples
+Below are some Example Axon Scripts that can be called from the command line.
+
+## [GitHub Sample Code](https://github.com/briansfrank/proto/tree/main/scripts)
+##Points to Zinc
+Transform all concrete ph.points specs to stdout as zinc file
+```
+#! /usr/bin/env axon
+// find all the non-abstract points specs
+lib: spec("ph.points")
+points: specSlots(lib).vals.findAll(s => s.missing("abstract"))
+
+// map to zinc recs
+recs: points.map(spec=>do
+
+ // get list of marker tag names
+ markers: spec.specSlots
+           .findAll(v => v["val"] == marker())
+           .vals
+           .map(specName)
+
+ // map to this dict
+ {id: spec.specQName.parseRef,
+  dis: spec.specName,
+  markers: markers,
+  doc: spec["doc"],
+  pointSpec
+  }
+end)
+
+print(ioWriteZinc(recs, ""), {text})
+```
+
+## Fits Match All.axon
+Load Project Haystack zinc data using the bravo data, and run fitsMatchAll() against it
+```
+#! /usr/bin/env axon
+//
+// Run the fitsMatchAll() function on a data set loaded from URI.
+// This script loads every library installed and then runs fitsMatchAll
+// on every record in the input data set.  The results are output as Zinc
+// to stdout.
+//
+// Usage:
+//   fits-match-all.axon <data>
+//
+// Examples:
+//   fits-match-all.axon https://project-haystack.org/example/download/bravo.zinc
+//
+
+if (args.isEmpty) throw "Must pass data arg"
+uri: args.get(0).parseUri
+load(uri)
+using("*")
+matches: readAll(id).fitsMatchAll
+print(ioWriteZinc(matches, ""), {text})
+```
+
+## Instantiate Equips 
+Generate instance data from an equiop xeto type, and output as a trio file
+```
+#! /usr/bin/env axon
+//
+// Generate instance data from an equip xeto type including
+// points found in its constrained query.  Output to stdout
+// as Trio file
+//
+// Usage:
+//   instantiate-equip.axon <qname>
+//
+// Examples:
+//    instantiate-equip.axon ashrae.g36::G36ReheatVav
+//
+
+if (args.isEmpty) throw "Must pass qname arg"
+qname: args.get(0)
+spec: spec(qname)
+equip: instantiate(spec, {graph})
+output: ioWriteTrio(equip, "")
+print(output, {text})
+```
+
+##Library to Ast
+Script to compile Xeto Library to a JSON AST file
+```
+#! /usr/bin/env axon
+//
+// Simple script to compile Xeto lib to a JSON AST file.  This
+// script provides similiar (but simpler) behavior in Axon
+// as the "xeto json-ast" command
+//
+// Usage:
+//   lib-to-ast.axon <lib>
+//
+// Examples:
+//    lib-to-ast.axon ashrae.g36
+//
+
+if (args.isEmpty) throw "Must pass lib arg"
+qname: args.get(0)
+spec: spec(qname)
+ast: specAst(spec)
+print(ast, {json})
+```
+
+##Validate and Filter
+Load a data set, find all the records, and match them with a filter. Use fitsExplained for validation.
+```
+#! /usr/bin/env axon
+
+//
+// Load a data set, find all the records which match a given filter
+// then run the filtered data thru fitsExplain for validation.  Output
+// results as Zinc to stdout.
+//
+// Usage:
+//  validate-filtered.axon <data> <filter> <spec>
+//
+// Examples:
+//   validate-filtered.axon https://project-haystack.org/example/download/bravo.zinc vav ashrae.g36::G36ReheatVav
+//
+
+if (args.size < 3) throw "Must pass args"
+uri:    args[0].parseUri
+filter: args[1].parseFilter
+spec:   args[2].spec
+
+load(uri)
+results: readAll(filter).fitsExplain(spec)
+print(ioWriteZinc(results, ""), {text})
+```

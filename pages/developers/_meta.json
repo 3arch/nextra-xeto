@@ -1,0 +1,24 @@
+{
+    "Libraries": "Libraries",
+    "guide": "",
+    "-- Themes": {
+      "type": "separator",
+      "title": "Themes"
+    },
+    "Spec-Templates": "",
+    "Language-Comparisons": "",
+    "custom-theme": "",
+    "-- More": {
+      "type": "separator",
+      "title": "More"
+    },
+    "about-link": {
+      "title": "About Xeto",
+      "href": "/about"
+    },
+    "projectHaystackLink": {
+      "title": "Project Haystack ↗",
+      "href": "https://project-haystack.org/doc/index",
+      "newWindow": true
+    }
+  }
