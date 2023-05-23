@@ -1,13 +1,13 @@
 {
     "Libraries": "Libraries",
-    "guide": "",
+    "Grammar": "",
     "-- Themes": {
       "type": "separator",
       "title": "Themes"
     },
     "Spec-Templates": "",
     "Language-Comparisons": "",
-    "custom-theme": "",
+    "Axon": "",
     "-- More": {
       "type": "separator",
       "title": "More"
