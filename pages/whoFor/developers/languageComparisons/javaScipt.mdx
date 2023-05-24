@@ -1,0 +1,117 @@
+### New Type in Xeto
+
+In Xeto, creating a new type (also known as a spec) means defining a blueprint for objects of that type. Types in Xeto often extend from other types, meaning they inherit the properties and behaviors of the parent type, but can also add or override those properties and behaviors. 
+
+Here is a simple example:
+
+```javascript filename="Xeto Sample Code"
+Car : Dict {
+  make: Str
+  model: Str
+  year: Num
+}
+```
+
+In this example, `Car` is a new type that extends `Dict`. It has three properties: `make`, `model`, and `year`.
+
+### New Instance in Xeto
+
+Creating a new instance in Xeto involves using an existing type and providing specific values for its properties. Notice you don't have to say `mew` like you do in `javaScript`. You just have the types without the name  `name :{}`. You can also do 2 or more types as well, for example you could do Car & Truck
+
+Here is a simple example:
+
+```javascript filename="javaScript"
+car: {
+  make: "Tesla"
+  model: "Model S"
+  year: 2022
+}
+```
+
+In this example, we're creating an instance of the `Car` type with specific make, model, and year.
+
+### New Instance in JavaScript
+
+In JavaScript, creating a new instance involves invoking a constructor function with the `new` keyword.
+
+```javascript filename="javaScript"
+function Car(make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+}
+
+let myCar = new Car("Tesla", "Model S", 2022);
+```
+
+In this example, `Car` is a constructor function. It initializes `make`, `model`, and `year` properties on its instances. When you invoke `Car` with `new`, it creates a new object and calls `Car` function with `this` set to the new object.
+
+### Comparison
+
+- **Types/Specs in Xeto vs Instances in JavaScript**: Both serve a similar purpose: they define a blueprint for creating objects. However, Xeto's syntax is more declarative, meaning it describes what the objects should look like rather than how to create them. JavaScript's constructor functions, on the other hand, provide a more imperative, step-by-step approach to constructing new objects.
+
+- **Instances in Xeto vs Instances in JavaScript**: Both involve creating a specific object based on a blueprint (a type in Xeto, a constructor in JavaScript). The main difference is in the syntax: Xeto uses a more declarative syntax, while JavaScript uses the `new` keyword and constructor invocation. In Xeto, you specify the properties and their values directly. In JavaScript, you pass the values as arguments to the constructor, which assigns them to the properties.
+
+- **Prototypes in JavaScript vs Types in Xeto**: Both serve as mechanisms for object-oriented inheritance. In JavaScript, instances of a constructor share a common prototype, from which they can inherit properties and methods. In Xeto, types can extend other types, inheriting their properties. JavaScript's prototypes are mutable and can be manipulated directly, while inheritance in Xeto is more static: once a type is defined, it can't be modified.
+
+
+
+#### Examples
+
+1. **Type System**: Xeto has a strong, static type system, whereas JavaScript is dynamically typed. JavaScript uses prototypes for inheritance while Xeto uses a simple extends mechanism for type inheritance. 
+
+    - Xeto Example: 
+        ```javascript filename="Xeto Examples" 
+        Document : Resource {
+            document
+        }
+        ```
+    - JavaScript Example: 
+        ```javascript filename="JavaScript Examples" 
+        class Document extends Resource {
+            constructor() {
+                super();
+                this.document = true;
+            }
+        }
+        ```
+
+2. **Metadata**: Xeto allows adding metadata directly to the type definitions, whereas this isn't a native feature in JavaScript. In JavaScript, you would need to add this metadata manually, perhaps as properties on the object or in comments.
+
+    - Xeto Example: 
+        ```javascript filename="Xeto Examples"  
+        Document : Resource<foo,year:"2020",test:MySites> {
+            document
+        }
+        ```
+
+3. **Marker Tags**: Xeto has a concept of marker tags which are boolean tags that simply mark a type with a certain attribute. JavaScript doesn't have a direct equivalent.
+
+    - Xeto Example: 
+        ```javascript filename="Xeto Examples"  
+        Document : Resource {
+            document
+        }
+        ```
+
+4. **Specification Language**: Xeto is a declarative specification language, while JavaScript is an imperative programming language. This means Xeto describes what something is, while JavaScript describes how to do something.
+
+5. **Purpose**: While JavaScript is a general-purpose language, Xeto is primarily used to model anything, not just smart buildings. Though it's built with smart building systems in mind, its application is not restricted to just that.
+
+    - Xeto Example: 
+        ```javascript filename="Xeto Examples"  
+        FanCoilUnit : Equipment {
+            fan
+            coil
+        }
+        ```
+    - JavaScript Example: 
+        ```javascript filename="JavaScript Examples" 
+        class FanCoilUnit extends Equipment {
+            constructor() {
+                super();
+                this.fan = true;
+                this.coil = true;
+            }
+        }
+        ```

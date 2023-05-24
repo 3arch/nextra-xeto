@@ -1,0 +1,68 @@
+# Python to Xeto Bullet Comparison
+## Creating a Type
+1. **Type System**: Both Python and Xeto have dynamic typing, meaning the type of a variable is checked during runtime. However, Xeto uses a more concise syntax for type inheritance.
+
+    - Xeto Example: 
+        ``` 
+        Document : Resource {
+            document
+        }
+        ```
+    - Python Example: 
+        ```python
+        class Document(Resource):
+            def __init__(self):
+                self.document = None
+        ```
+
+2. **Metadata**: Xeto allows adding metadata directly to the type definitions. In Python, there isn't a direct equivalent, although decorators can be used for similar purposes.
+
+    - Xeto Example: 
+        ```javaScript filename="Xeto Example" 
+        Document : Resource<foo,year:"2020",test:MySites> {
+            document
+        }
+        ```
+
+3. **Marker Tags**: Xeto has a concept of marker tags which are boolean tags that simply mark a type with a certain attribute. Python doesn't have a direct equivalent.
+
+    - Xeto Example: 
+        ```javaScript filename="Xeto Example" 
+        Document : Resource {
+            document
+        }
+        ```
+
+4. **Specification Language vs Programming Language**: Xeto is a declarative specification language, describing what something is. On the other hand, Python is a high-level general-purpose programming language, describing how to perform tasks.
+
+5. **Purpose**: Python is a versatile language, used in a wide array of applications from web development to data science. Xeto, however, is primarily used for modeling, especially smart buildings and IoT devices, although its application is not restricted to just that.
+
+    - Xeto Example: 
+        ```javaScript filename="Xeto Example" 
+        FanCoilUnit : Equipment {
+            fan
+            coil
+        }
+        ```
+    - Python Example: 
+        ```python filename="Python Example"
+        class FanCoilUnit(Equipment):
+            def __init__(self):
+                self.fan = True
+                self.coil = True
+        ```
+
+
+## Synergy: 5 Possibilities
+
+1. **Data Modeling**: Xeto's domain-specific modeling capabilities could enhance Python's already powerful data handling capabilities, providing a standard way to model data in IoT applications and smart buildings.
+
+2. **Metadata Handling**: Xeto's comprehensive handling of metadata could add an extra layer of descriptive power to Python's data structures, allowing for improved data processing and analysis.
+
+3. **Type System**: Python could leverage Xeto's powerful type system to support more complex and expressive data structures, enhancing its versatility and expressivity in data manipulation and analysis tasks.
+
+4. **Data Validation**: Through Xeto's data validation capabilities at the specification level, Python applications could further enhance their reliability and robustness in terms of data handling and processing.
+
+5. **Interoperability**: If a Xeto to OpenAPI or Swagger interface is developed, Python applications could use it to interface with other systems more effectively, enhancing their interoperability, especially in a microservices architecture where different services need to communicate seamlessly.
+
+The integration of Xeto with Python could enhance the data modeling, validation, interoperability, and handling of metadata in Python applications. This potential synergy could result in more robust, versatile, and interoperable Python applications, particularly in the field of IoT and smart buildings.

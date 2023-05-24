@@ -4,7 +4,7 @@ Below are some Example Axon Scripts that can be called from the command line.
 ## [GitHub Sample Code](https://github.com/briansfrank/proto/tree/main/scripts)
 ##Points to Zinc
 Transform all concrete ph.points specs to stdout as zinc file 
-```
+```javascript filename="Axon Sample"
 #! /usr/bin/env axon
 // find all the non-abstract points specs
 lib: spec("ph.points")
@@ -34,7 +34,7 @@ print(ioWriteZinc(recs, ""), {text})
 ## Fits Match All.axon
 Load Project Haystack zinc data using the bravo data, and run fitsMatchAll() against it
 > fits-match-all.axon https://project-haystack.org/example/download/bravo.zinc
-```js {2,4-5} filename="my Axon Foo"
+```javascript {56} filename="Axon Sample"
 #! /usr/bin/env axon
 //
 // Run the fitsMatchAll() function on a data set loaded from URI.
@@ -59,7 +59,7 @@ print(ioWriteZinc(matches, ""), {text})
 
 ## Instantiate Equips 
 Generate instance data from an equiop xeto type, and output as a trio file
-```
+```javascript filename="Axon Sample"
 #! /usr/bin/env axon
 //
 // Generate instance data from an equip xeto type including
@@ -83,7 +83,7 @@ print(output, {text})
 
 ##Library to Ast
 Script to compile Xeto Library to a JSON AST file
-```
+```javascript filename="Axon Sample"
 #! /usr/bin/env axon
 //
 // Simple script to compile Xeto lib to a JSON AST file.  This
@@ -106,7 +106,7 @@ print(ast, {json})
 
 ##Validate and Filter
 Load a data set, find all the records, and match them with a filter. Use fitsExplained for validation.
-```
+```javascript {130} filename="Axon Sample"
 #! /usr/bin/env axon
 
 //

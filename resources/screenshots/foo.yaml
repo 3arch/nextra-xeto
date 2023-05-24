@@ -1,0 +1,6 @@
+%TAG ! tag:example.com,2000:app/
+---
+!Car
+manufacturer: Tesla
+model: Model S
+year: 2022

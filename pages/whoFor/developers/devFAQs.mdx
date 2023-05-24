@@ -1,1 +1,88 @@
-##Testing
+## Frequently Asked Questions about Xeto
+
+1. **What is Xeto?**  
+Xeto is a declarative language that is primarily used for modeling, especially smart buildings and IoT devices. Its syntax is clear and easy to understand, allowing for quick creation of models and resources.
+
+2. **How do I create a new type in Xeto?**  
+You can create a new type using the following syntax:
+
+    ```javascript filename="Sample Xeto Code"
+    Building : Resource {
+      rooms: List<Room>
+    }
+    ```
+    
+    In this example, `Building` is a new type that extends `Resource` and has a property `rooms` which is a list of another type `Room`.
+
+3. **What is a marker tag in Xeto?**  
+A marker tag in Xeto is a boolean tag that simply marks a type with a certain attribute. For example:
+
+    ```javascript filename="Sample Xeto Code"
+    MyType : BaseType<myMarkerTag> {
+      someProperty
+    }
+    ```
+    
+    Here, `myMarkerTag` is a marker tag.
+
+4. **How do I create an instance of a type in Xeto?**  
+Creating an instance of a type in Xeto can be achieved like this:
+
+    ```javascript filename="Sample Xeto Code"
+    myBuilding := Building {
+      rooms: []
+    }
+    ```
+    
+    In this example, `myBuilding` is an instance of the `Building` type.
+
+5. **Can I extend multiple types in Xeto?**  
+In Xeto, a type can extend multiple other types by using the `Union` keyword. For example:
+
+    ```javascript filename="Sample Xeto Code"
+    MyType : Union<BaseType1, BaseType2> {
+      property1
+      property2
+    }
+    ```
+    
+    Here, `MyType` is a new type that extends both `BaseType1` and `BaseType2`.
+
+6. **How does Xeto handle inheritance?**  
+Inheritance in Xeto is achieved through type extension. When a type extends another, it inherits all of its properties and behavior. For example:
+
+    ```javascript filename="Sample Xeto Code"
+    MySubType : MyType {
+      newProperty
+    }
+    ```
+    
+    Here, `MySubType` inherits all properties and behavior from `MyType`.
+
+7. **What is metadata in Xeto?**  
+Metadata in Xeto can be added directly to the type definitions, providing extra information about a type. For example:
+
+    ```javascript filename="Sample Xeto Code"
+    MyType : BaseType<myMetadata:"someValue"> {
+      someProperty
+    }
+    ```
+    
+    Here, `myMetadata` is a piece of metadata with the value `"someValue"`.
+
+8. **Can I use Xeto for applications other than smart buildings?**  
+Yes, while Xeto is particularly effective for modeling smart buildings, it can be used to model any domain.
+
+9. **How do I add a list of types in Xeto?**  
+Here is an example of how you can add a list of types:
+
+    ```javascript filename="Sample Xeto Code"
+    Building : Resource {
+      rooms: List<Room>
+    }
+    ```
+    
+    In this example, `rooms` is a list of `Room` types.
+
+10. **What is the difference between Xeto and traditional programming languages?**  
+Xeto is a declarative specification language, which means it describes what something is. Traditional programming languages, on the other hand, describe how to perform tasks. This
