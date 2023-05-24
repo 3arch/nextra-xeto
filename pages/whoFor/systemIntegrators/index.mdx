@@ -1,2 +1,47 @@
-# SIs / System Integrators
+# Xeto Inheritance Demonstration
+
+In Xeto, one of the main features is the inheritance model that allows us to define and extend types/specs easily. Let's demonstrate this by using an example of a Vehicle, which we can extend to a Car and a Truck.
+
+## Defining a Vehicle
+
+First, we'll define a generic Vehicle type/spec:
+
+```xeto filename="Sample Xeto Code"
+Vehicle : Equipment {
+  wheels: 4
+  fuel: "gasoline"
+}
+```
+
+
+
+In this case, `Vehicle` is a type that extends `Equipment`. It has two properties, `wheels` and `fuel`.
+
+## Extending to a Car
+
+Next, we can extend `Vehicle` to create a `Car` type/spec:
+
+```xeto filename="Sample Xeto Code"
+Car : Vehicle {
+  doors: 4
+  sunroof: true
+}
+```
+
+Here, `Car` extends `Vehicle`, thus it inherits the properties of `Vehicle` (`wheels` and `fuel`) and adds two more properties, `doors` and `sunroof`.
+
+## Extending to a Truck
+
+Similarly, we can extend `Vehicle` to create a `Truck` type/spec:
+
+```xeto filename="Sample Xeto Code"
+Truck : Vehicle {
+  doors: 2
+  bedLength: "8 feet"
+}
+```
+
+In this case, `Truck` also inherits the properties of `Vehicle` and adds its own properties, `doors` and `bedLength`.
+
+This way, we can create and extend types/specs in Xeto with ease. Inheritance allows us to carry forward properties and tags from the parent type/spec, reducing redundancy and improving clarity.
 

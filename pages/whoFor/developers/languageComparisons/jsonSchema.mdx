@@ -1,0 +1,55 @@
+# Xeto vs JSON Schema
+
+## Ease of Use and Readability  
+Xeto's syntax is simpler and more straightforward than JSON Schema, making it easier to read and write.
+
+ 
+        ```javascript filename="Sample Xeto File" 
+        Document : Resource {
+            document
+        }
+        ```
+
+        ```json filename="Sample JSON Schema"
+        {
+          "$schema": "http://json-schema.org/draft-07/schema",
+          "type": "object",
+          "properties": {
+            "document": {
+              "type": "boolean"
+            }
+          }
+        }
+        ```
+
+## Meta-Data 
+While both Xeto and JSON Schema allow for adding metadata to your types, Xeto's syntax is more straightforward.
+
+ 
+        ```javascript filename="Sample Xeto" 
+        Document : Resource<foo,year:"2020",test:MySites> {
+            document
+        }
+        ```
+
+        ```json filename="Sample JSON Schema"
+        {
+          "$schema": "http://json-schema.org/draft-07/schema",
+          "type": "object",
+          "properties": {
+            "document": {
+              "type": "boolean",
+              "description": "This is metadata for the 'document' property"
+            }
+          }
+        }
+        ```
+
+## Inheritance and Extensions  
+Both Xeto and JSON Schema allow for extending types. In Xeto, this is achieved with a simple syntax, while JSON Schema uses the more complex "$ref" system.
+
+## Marker Tags  
+Xeto includes a concept of marker tags, a feature not available in JSON Schema.
+
+## Purpose and Usage  
+JSON Schema is specifically designed for validating the structure of JSON data, while Xeto is used for modeling, especially in the context of smart buildings and IoT, but not restricted to that.
