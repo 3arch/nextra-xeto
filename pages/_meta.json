@@ -3,6 +3,10 @@
         "title": "Home",
         "type": "page"
     },
+    "libs": {
+        "title": "Libraries",
+        "type": "page"
+    },
     "whoFor": {
         "title": "Who's it for",        
         "type": "menu",
