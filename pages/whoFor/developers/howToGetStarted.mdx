@@ -1,0 +1,131 @@
+
+
+# Xeto is designed to run anywhere
+We are tyring to make it easy to get up and started. The following is a list on how to build locally. You can also just use `Xeto.dev` connected to gitHub, and it will do all your build and resolve all your dependencies. It's our goal to make it extrely easy to get started, and to make it easy for non developers too. 
+
+# Install using npm
+
+You can also install Xeto as a Node.js module via npm. This is convenient if you are developing a Node.js application that needs to interact with Xeto. Here's how you can install Xeto using npm:
+
+```bash
+npm install xeto
+```
+
+# Install using Deno
+
+If you're using Deno, a secure runtime for JavaScript and TypeScript, you can import Xeto directly from the Deno libraries. Here's how you can do it:
+
+```javascript
+import Xeto from 'https://deno.land/x/xeto/mod.ts';
+```
+
+
+## Install on macOS
+
+The quickest way to get going with Xeto on macOS is to use Homebrew. This will install both the command-line tools, and the Xeto server as a single executable. If you don't use Homebrew, follow the instructions for Linux below to install Xeto. View the [documentation](https://xeto.com/docs) for more information.
+
+```bash
+brew install xeto/tap/xeto
+```
+
+## Install on Linux
+
+The easiest and preferred way to get going with Xeto on Unix operating systems is to install and use the Xeto command-line tool. Run the following command in your terminal and follow the on-screen instructions. View the [documentation](https://xeto.com/docs) for more information.
+
+```bash
+curl -sSf https://install.xeto.dev | sh
+```
+
+## Install on Windows
+
+The easiest and preferred way to get going with Xeto on Windows is to install and use the Xeto command-line tool. Run the following command in your terminal and follow the on-screen instructions. View the [documentation](https://xeto.com/docs) for more information.
+
+```powershell
+iwr https://windows.xeto.com -useb | iex
+```
+
+Alternatively, Xeto is available for installation, on Windows, via the Chocolatey package manager, from an administrative shell - enabling easy installation and upgrading.
+
+```powershell
+choco install xeto --pre
+```
+
+Alternatively, Xeto is available for installation, on Windows, via the Scoop package manager, from an administrative shell - enabling easy installation and upgrading.
+
+```powershell
+scoop install xeto
+```
+
+## Run using Docker
+
+Docker can be used to manage and run Xeto database instances without the need to install any command-line tools. The Xeto docker container contains the full command-line tools for importing and exporting data from a running server, or for running a server itself. View the [documentation](https://xeto.com/docs) for more information.
+
+```bash
+docker run --rm --pull always -p 8000:8000 xeto/xeto:latest start
+```
+
+<div style={{
+    display: 'flex', 
+    flexDirection: 'row', 
+    flexWrap: 'wrap',
+    alignItems: 'center', 
+    justifyContent: 'space-between', 
+    flexGrow: 1, 
+    paddingTop: '8px'
+}}>
+    <div style={{width: '50%', paddingRight: '20px'}}>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+            <img src="/resources/logos/javaScript.png" alt="JavaScript Logo" style={{width: '40px', height: '40px', marginRight: '10px'}}/>
+            <h1 style={{fontSize: '3em', fontWeight: 'bold'}}>Xeto<span style={{
+                background: 'linear-gradient(-60deg,#8700ff 0,#ff009e 100%)', 
+                WebkitBackgroundClip: 'text', 
+                color: 'transparent'
+            }}>.dev</span></h1>
+        </div>
+        <p>Xeto.dev is the website, and is the way to go, it should be the next generation in buildings.</p>
+    </div>
+
+    <div style={{width: '50%'}}>
+        ```javascript filename="My JavaScript code"
+        var foo = 12;
+        let bar = "Hello, world!";
+        function greet() {
+            console.log(bar);
+        }
+        greet();
+        for (let i = 0; i < 5; i++) {
+            console.log(i);
+        }
+        ```
+    </div>
+</div>
+
+
+import SideBySideBlock from "../../../components/Slide"
+
+
+
+ <SideBySideBlock 
+  imagePath="/resources/logos/javaScript.png" 
+  title="Xeto.dev" 
+  description="Xeto.dev is the website, and is the way to go, it should be the next generation in buildings."
+  gradientStrings=".dev,website"
+>
+  ```javascript filename="My JavaScript code"
+  var foo = 12;
+  let bar = "Hello, world!";
+  function greet() {
+      console.log(bar);
+  }
+  greet();
+  for (let i = 0; i < 5; i++) {
+      console.log(i);
+  }
+  ```
+  </SideBySideBlock>
+
+
+
+
+
+
