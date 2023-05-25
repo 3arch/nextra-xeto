@@ -1,53 +1,213 @@
-# Xeto, TypeScript, and Metadata
+# Xeto Cmd Line
 
-Here we will show you a list of build commands like
--AST tree
--Validation
+Intro
 
+Using version haxall version 3.1.8 (I assume same as 3.1.7.902)
 
-##Node Command Lines and NPM
+## Xeto CLI (bin/xeto)
 
+### env
 
-##Fantom Builds with Haxall
--Ast
+- ‘bin/xeto env’
+- shows what libraries you have installed as xetolib files
 
-### Run an Axon Script
-Validate VAVs against the `G36ReheatVav`
-`validate-filtered.axon https://project-haystack.org/example/download/bravo.zinc vav ashrae.g36::G36ReheatVav`
-
-
-
-### Step-1
-asdfasdf
-asdfasdfasdf
-asdfasdfsdfasfd
-### Another Step
-```js {2} filename="next.config.js"
-const withNextra = require('nextra')({
-  theme: './theme.tsx',
-})
-
-module.exports = withNextra({
-  // Other Next.js configurations
-  ...
-})
+```bash copy filename="Command Line"
+echo "Show installed libraries"
 ```
 
-### Create a Basic Theme
+- sys library has core libraries
 
-You can now start working on your theme! In your root directory, create the corresponding `theme.tsx` file with basic content:
+### init
 
-```tsx filename="theme.tsx" /children/
-import type { NextraThemeLayoutProps } from 'nextra'
+- ‘bin/xeto init \<libName\>’
+- creating your own library
+- input is name of new lib
 
-export default function Layout({ children }: NextraThemeLayoutProps) {
-  return (
-    <div>
-      <h1>My Theme</h1>
-      <div style={{ border: '1px solid' }}>{children}</div>
-    </div>
-  )
-}
+```bash copy filename="Command Line"
+echo "Creating new library"
 ```
 
+- output is two files lib.xeto and spec.xeto
+- once you run it, you’ll now see it when you run ‘bin/xeto env’
+- if you have the source code local, it will use the source code denoted as “SRC”
 
+```bash copy filename="Command Line"
+echo "Output is two files lib.xeto and spec.xeto"
+```
+
+### build
+
+- ‘bin/xeto build \<libName\>’
+- creates a xetolib file in your lib/xeto dir
+
+```bash copy filename="Command Line"
+echo "Creating a xetolib file"
+```
+
+## VS Code
+
+### lib.xeto
+
+- metadata for library
+- version is always a 3 digit version
+
+```bash copy filename="Command Line"
+echo "Metadata for library"
+```
+
+### spec.xeto
+
+- all spec are defined here
+- not much else....not sure if he was planning on saying more here
+- (this shows up again more in depth at the 8min mark when explaining scalars)
+
+```bash copy filename="Command Line"
+echo "All specs are defined here"
+```
+
+## Axon CLI
+
+Might need to run ‘chmod +x bin/*’ to run axon executable
+
+Start CLI with ‘bin/axon’
+
+Using(\"*\")
+
+- initialize the libraries you want to use (in this case * means all available)
+
+Reload
+
+- called using dataEnvReload()
+- will update if you change a local source library, no build needed unless you need a new xetolib file
+
+Print spec, AST
+
+- dump the spec list from a library
+- print( MySpec, "doc")
+- specAst(MySpec)
+- specAst(MySpec).print("json")
+
+```bash copy filename="Command Line"
+echo "Print spec, AST"
+```
+
+## Scalars
+
+- defined as \<varName\>: \<varType\> \<varValue\>
+
+### Numbers, Dates
+
+```bash copy filename="Command Line"
+echo "Numbers, Dates"
+```
+
+- both above slot syntax’s are identical in output
+
+### Str default
+
+- if you leave off the varType, it defaults to a string
+
+### Markers
+
+- can define marker type, or just leave of varType and varValue to default to marker
+
+```bash copy filename="Command Line"
+echo "Markers"
+```
+
+### Custom Scalars
+
+- can create whatever new scalars by extending Scalar type
+
+```bash copy filename="Command Line"
+echo "Custom Scalars"
+```
+
+- Above, Color is a new type extending Scalar
+
+## Seq or Sequences (Collection types)
+
+### Dict name/unnamed
+
+- unnamed dict values are given the _0, _1, _2, etc naming convention
+
+```bash copy filename="Command Line"
+echo "Dict name/unnamed"
+```
+
+## Testing
+
+Can write tests within the Spec
+
+- test using assert()
+
+```bash copy filename="Command Line"
+echo "Testing"
+```
+
+## VS Code
+
+**Format code**
+
+- Right click and ‘format document’
+- all scalars move to top (this isn’t necessary but they seem to like it)
+
+**Create new type (extending Dict)**
+
+- create a new spec to use your custom type
+
+```bash copy filename="Command Line"
+echo "Create new type (extending Dict)"
+```
+
+## Using (\"libraryName\")
+
+- initialize libraries you want to use
+
+```bash copy filename="Command Line"
+echo "Using(\"libraryName\")"
+```
+
+### Import specs
+
+- importing a spec
+
+```bash copy filename="Command Line"
+echo "Import specs"
+```
+
+## Factory Function (example of Function)
+
+- makeFactory function creating a factory that creates new animals
+
+```bash copy filename="Command Line"
+echo "Factory Function (example of Function)"
+```
+
+### Import type
+
+- import a type (not a spec)
+
+```bash copy filename="Command Line"
+echo "Import type"
+```
+
+## Load local source library
+
+- loading a local library
+
+```bash copy filename="Command Line"
+echo "Load local source library"
+```
+
+### Reload
+
+- Reload if source changes
+
+```bash copy filename="Command Line"
+echo "Reload"
+```
+
+## Conclusion
+
+This was a basic introduction to Xeto language.
