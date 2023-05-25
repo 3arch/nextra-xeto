@@ -1,3 +1,6 @@
+import { Callout, FileTree } from 'nextra-theme-docs'
+
+
 # Xeto Cmd Line
 
 Intro
@@ -94,6 +97,21 @@ echo "Print spec, AST"
 ## Scalars
 
 - defined as \<varName\>: \<varType\> \<varValue\>
+
+## Pages
+
+The title and order of a page shown in the sidebar should be configured in the
+`_meta.json` file as key-value pairs. For example, if you have the following
+file structure:
+
+<FileTree>
+  <FileTree.Folder name="pages" defaultOpen>
+    <FileTree.File name="_meta.json" />
+    <FileTree.File name="about.mdx" />
+    <FileTree.File name="contact.mdx" />
+    <FileTree.File name="index.mdx" />
+  </FileTree.Folder>
+</FileTree>
 
 ### Numbers, Dates
 

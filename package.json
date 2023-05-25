@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "autoprefixer": "^10.4.14",
     "next": "^13.4.3",
     "nextra": "^2.6.1",
