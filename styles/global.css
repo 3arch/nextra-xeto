@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --future: #ff009e;
+  --planned: #9d2fff;
+  --complete: #00ff6e;
+}
+
+.tagcolor-future {
+  color: var(--future);
+  border: 1px solid var(--future);
+}
+
+.tagcolor-planned {
+  color: var(--planned);
+  border: 1px solid var(--planned);
+}
+
+.tagcolor-complete {
+  color: var(--complete);
+  border: 1px solid var(--complete);
+}

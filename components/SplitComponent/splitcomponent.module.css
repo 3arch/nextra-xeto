@@ -1,0 +1,22 @@
+.splitComponent .wrapper:nth-child(even) {
+  flex-direction: row-reverse;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wrapper > div {
+  margin: 0 0.5rem;
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-weight: 400;
+  color: lightgray;
+}

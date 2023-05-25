@@ -1,0 +1,5 @@
+.button:hover {
+  background: linear-gradient(-60deg, #8700ff, #ff009e);
+  color: #fff;
+  transform: scale(1.06);
+}
