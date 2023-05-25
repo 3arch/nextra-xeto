@@ -1,5 +1,128 @@
-# What we use for Technical Docs
-We use `MDX` file for the documentation. This means you can use `React Components` `html` but mostly you just write the Docs in [Markup Down](https://www.markdownguide.org/basic-syntax/).
 
-## Components
-We use some built in components like the `Code Block`. 
+import SideBySideBlock from "../../../components/Slide"
+import Image from 'next/image'
+
+
+
+ <SideBySideBlock 
+  
+  title="Xeto.dev" 
+  description="Xeto.dev is the website, and is the way to go, it should be the next generation in buildings."
+  gradientStrings=".dev,website"
+  contentPosition="right"
+  labelText="COMPLETED"
+  statusColor="success"
+>
+  ```javascript copy filename="My JavaScript code"
+  var foo = 12;
+  let bar = "Hello, world!";
+  function greet() {
+      console.log(bar);
+  }
+  greet();
+  for (let i = 0; i < 5; i++) {
+      console.log(i);
+  }
+  ```
+  </SideBySideBlock>
+
+   <SideBySideBlock 
+  
+  title="Xeto.dev" 
+  description="Xeto.dev is the website, and is the way to go, it should be the next generation in buildings."
+  gradientStrings=".dev,website"
+  contentPosition="right"
+  labelText="PENDING"
+  statusColor="pending"
+>
+  ```javascript copy filename="My JavaScript code"
+  var foo = 12;
+  let bar = "Hello, world!";
+  function greet() {
+      console.log(bar);
+  }
+  greet();
+  for (let i = 0; i < 5; i++) {
+      console.log(i);
+  }
+  ```
+  </SideBySideBlock>
+
+<SideBySideBlock   
+  title="GraphQL" 
+  description="GraphQL is a query language that let's you do prtty cool things. Here I'm just doing some testing. What happens if the text keeps growing and growing and growing and growing"
+  gradientStrings="Graph,cool"
+  contentPosition="right"
+  labelText="WARNING"
+  statusColor="warning"
+>
+<Image src="/resources/logos/graphQL.png" alt="Hello" width={400} height={400}  />
+
+</SideBySideBlock>
+
+## 2 Button Layout
+
+<SideBySideBlock   
+  title="GraphQL" 
+  description="GraphQL is a query language that let's you do prtty cool things. Here I'm just doing some testing. What happens if the text keeps growing and growing and growing and growing"
+  gradientStrings="Graph,cool"
+  contentPosition="right"
+  labelText="WARNING"
+  statusColor="warning"
+>
+
+</SideBySideBlock>
+
+```mdx copy filename="MDX React Code"
+<SideBySideBlock   
+  title="GraphQL" 
+  description="GraphQL is a query language that let's you do prtty cool things. Here I'm just doing some testing. What happens if the text keeps growing and growing and growing and growing"
+  gradientStrings="Graph,cool"
+  contentPosition="right"
+  labelText="WARNING"
+  statusColor="warning"
+>
+
+</SideBySideBlock>
+```
+
+##  Code for Type Templates
+
+```mdx copy
+
+<% if (it.utils.hasSummary(it.summary)) { %>
+<div className={`${classes.summaryBox} flex flex-col bg-primary-700/5 dark:bg-primary-300/10 rounded-xl mt-10`}>
+	<div className='flex text-sm px-4 py-2 font-semibold rounded-t-xl bg-primary-700/5 text-gray-700 dark:bg-primary-300/10 dark:text-gray-200'>
+	## Point Summary
+
+	<span className='flex-auto text-right font-mono'><%= new Intl.NumberFormat('en-US', {minimumIntegerDigits: 2}).format(Object.values(it.summary.points || {}).reduce((a, v) => (a + Object.values(v || {}).reduce((aa, cc) => aa + Object.keys(cc).length, 0)), 0)) %></span>
+	</div>
+
+	<ul className='px-4 py-2 flex flex-col gap-6 pb-4'>
+	<% Object.entries(it.summary.points).forEach(([key, val]) => { %>
+		<li>
+			<div className={classes.const}><span className='text-sm'># </span><a className='underline underline-offset-2 decoration-dotted' href='https://project-haystack.org/doc/lib-phIoT/<%= key %>'><%= key %></a> </div>
+			<p className={classes.txt}><%= it.utils.docWithFixedLinks(it.hsDocs.get(key)) %></p>
+			<ul className='grid md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-2 mt-2'>
+				<% Object.entries(val).forEach(([field, fieldVals]) => { %>
+					<li className='text-sm flex items-center justify-between font-mono  px-3 py-1 rounded-sm bg-primary-600/10'>
+						<span className={classes.func}><%= field %></span>
+						<span className={classes.keyword}><%= new Intl.NumberFormat('en-US', {minimumIntegerDigits: 2}).format(Object.keys(fieldVals).length) %></span>
+					</li>
+				<% }) %>
+			</ul>
+		</li>
+	<% }) %>
+	</ul>
+</div>
+<% } %>
+```
+
+## Here is the 
+
+```mdx copy
+
+<brand>Config <brand/>
+
+asfsdf
+```

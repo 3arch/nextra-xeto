@@ -62,11 +62,11 @@
   }
   
   .center {
-    text-align: center;
+    @apply text-center;
   }
   
   .right {
-    text-align: right;
+    @apply text-right;
   }
   
 
