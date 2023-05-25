@@ -1,33 +1,39 @@
-# Xeto Spec Properties Explanation
+import HeaderGradient from "../components/HeaderGradient"
+import DocButton from "../components/DocButton"
+import Image from 'next/image'
 
-- `type: Type?`: This field is used to reference the value type if this spec is not a type.
-- `maybe: Marker? <noInherit>`: Indicates that this type is optional. It doesn't inherit this marker from parent types/specs.
-- `val: Obj?`: The default scalar value, if any, for this type.
-- `slots: Dict <of:Spec>`: The dictionary of slot specifications for this type.
-- `of: Spec?`: Specifies the item type for container types like `Maybe`, `Seq`, and `Ref`.
-- `ofs: List? <of:Spec>`: The types used in compound types like `And` and `Or`.
-- `doc: Str`: A documentation description for the spec.
-- `abstract: Marker? <noInherit>`: Indicates that the spec is an abstract type and cannot be implemented directly by instance data. It doesn't inherit this marker from parent types/specs.
-- `sealed: Marker? <noInherit>`: Indicates that the spec is a sealed type and cannot be extended outside of its own library. It doesn't inherit this marker from parent types/specs.
-- `nodoc: Marker?`: Marks the spec as undocumented and not officially supported.
-- `pattern: Str?`: A regex pattern for scalar string encoding, if any.
-- `minVal: Self?`: The inclusive minimum value for this type.
-- `maxVal: Self?`: The inclusive maximum value for this type.
-- `via: Str?`: A named path to traverse to execute a query.
-- `inverse: Spec?`: Specifies an inverse query to run against a parent spec.
+<HeaderGradient 
+  tag="h1" 
+  gradientStrings=".dev,website"
+  title="Welcome to Xeto.dev"
+  description="Xeto.dev is the website, and is the way to go, it should be the next gen in buildings."
+  align="center" 
+/>
 
-In the `Lib: Spec`:
+<div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-4 gap-4">
+  <HeaderGradient 
+    tag="h1" 
+    gradientStrings="Welcome,website"
+    title="Welcome to Xeto.dev"
+    description="Xeto.dev is the website, and is the way to go, it should be the next gen in buildings."
+    align="center" 
+  />
+  <HeaderGradient 
+    tag="h1" 
+    gradientStrings=".dev,website"
+    title="Welcome to Xeto.dev"
+    description="Xeto.dev is the website, and is the way to go, it should be the next gen in buildings."
+    align="center" 
+  />
+  <HeaderGradient 
+    tag="h1" 
+    gradientStrings=".dev,website"
+    title="Welcome to Xeto.dev"
+    description="Xeto.dev is the website, and is the way to go, it should be the next gen in buildings."
+    align="center" 
+  />
+</div>
 
-- `version: Version`: The current version of the library.
-- `depends: List <of:LibDepend>`: A list of library dependencies.
-- `org: LibOrg`: Organization metadata for the library.
 
-Note: `Self` in the context of `minVal` and `maxVal` refers to the type that the properties are within.
 
-## Examples
-
-```xeto
-Document : Resource<foo,year:"2020",test:MySites> {
-  document
-}
-```
+<DocButton size="small" isSelected="true">Button text</DocButton>
