@@ -1,0 +1,129 @@
+---
+title: Feature
+---
+
+import React from "react";
+import Layout from "../../../../components/Layout/Layout";
+import Button from "../../../../components/Button/Button";
+import Feature from "../../../../components/Features/Feature"
+
+## Feature Component Documentation
+
+The `Feature` component is a React component that allows you to render a single feature with a title, description, and tag. It provides a way to highlight individual features in your application.
+
+<div style={{marginTop: "30px"}} />
+
+<Feature>
+  ### Multi-table, multi-row transactions As a fully ACID
+  compliant database, SurrealDB allows you to run transactions across
+  multiple-rows, and across multiple different tables. There is no limit to the
+  length of time a transaction can run.
+### COMPLETE:planned
+</Feature>
+
+### Usage
+
+To use the `Feature` component, follow the steps below:
+
+1. Import the `Feature` component into your React application:
+
+   ```jsx
+   import Feature from "./Feature";
+   ```
+2. Render the `Feature` component in your JSX code, providing the title, description, and tag as children:
+
+```mdx
+<Feature>
+  ### Title
+  Description
+  ### tagText:colorSpecifier
+</Feature>
+```
+
+
+Note: Ensure that the title, description, and tag are defined within the Feature component in the specified structure.
+
+### Structure Requirements
+
+When using the `Feature` component, make sure to follow this structure:
+
+1. `### Title` - This specifies the title for the feature.
+2. `Description` - This provides a description for the feature.
+3. `### tagText:colorSpecifier` - This defines the tag for the feature, where `tagText` represents the text to display in the tag, and `colorSpecifier` specifies the color of the tag. The `colorSpecifier` can be one of the following: "future", "planned", or "completed".
+
+Ensure that the feature is placed on separate lines and follows the specified structure to ensure proper rendering of the `Feature` component.
+
+
+
+### Example
+
+```jsx copy filename="App.tsx"
+function App() {
+  return (
+    <Feature>
+      ### Multi-table, multi-row transactions
+      As a fully ACID compliant database, SurrealDB allows you to run transactions across multiple rows, and across multiple different tables. There is no limit to the length of time a transaction can run.
+      ### COMPLETE:planned
+    </Feature>
+  );
+}
+
+export default App;
+```
+In this example, the **Feature** component is used to render a single feature. It has the title "Multi-table, multi-row transactions," a description, and a tag with the text "COMPLETE" and the color "planned".
+
+
+        ### Simple Feature 
+        <Layout columnCount={2}>
+                <Feature>
+                    ### Multi-table, multi-row transactions As a fully ACID
+                    compliant database, SurrealDB allows you to run transactions across
+                    multiple-rows, and across multiple different tables. There is no limit to the
+                    length of time a transaction can run.
+                    ### COMPLETE:planned
+                </Feature>
+
+                    ```jsx copy filename="SimpleFeature.tsx"
+                        <Feature>
+                            ### Multi-table, multi-row transactions As a fully ACID
+                            compliant database, SurrealDB allows you to run transactions across
+                            multiple-rows, and across multiple different tables. There is no limit to the
+                            length of time a transaction can run.
+                            ### COMPLETE:planned
+                        </Feature>
+                    ```
+        </Layout>
+
+        ### Feature with a button
+        <Layout columnCount={2}>
+                <Feature>
+                    ### Multi-table, multi-row transactions As a fully ACID
+                    compliant database, SurrealDB allows you to run transactions across
+                    multiple-rows, and across multiple different tables. There is no limit to the
+                    length of time a transaction can run.
+                    ### COMPLETE:planned
+                     <Button>
+                        [Install](http://stackoverflow.com)
+                        ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+                    </Button>
+                </Feature>
+
+                    ```jsx copy filename="SimpleFeature.tsx"
+                        <Feature>
+                            ### Multi-table, multi-row transactions As a fully ACID
+                            compliant database, SurrealDB allows you to run transactions across
+                            multiple-rows, and across multiple different tables. There is no limit to the
+                            length of time a transaction can run.
+                            ### COMPLETE:planned
+                        </Feature>
+                         <Button>
+                            [Install](http://stackoverflow.com)
+                            ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+                        </Button>
+                    ```
+        </Layout>
+
+### Features Component Integration
+
+If you need to render multiple features, you can use the **Features** component. The **Features** component allows you to render multiple features with titles, descriptions, and tags. You can find the documentation for the **Features** component here(fsdfkjn).
+

@@ -1,4 +1,5 @@
 import React from "react";
+import classes from "./layout.module.css";
 
 interface Props {
   children?: any;
@@ -6,14 +7,28 @@ interface Props {
 }
 
 function Layout(props: Props) {
-  const { children, columnCount } = props;
+  let  { children, columnCount=1 } = props;
+  let width = 100;
+
+  if(columnCount  = 2){
+    width  = width /columnCount;
+  }
+
+  
 
   return (
     <>
       <div
-        className={`grid grid-cols-1 lg:grid-cols-${columnCount} gap-10 my-5`}
+        className={classes.layout}
+        style={columnCount ? {
+          gridTemplateColumns: `repeat(${columnCount}, 1fr)`
+        } : {}}
       >
-        {children}
+        {children?.map((child) => (
+          <div className={classes.child} style={{width:  width+"%", padding:"0 10px"}}>
+            {child}
+          </div>
+        ))}
       </div>
     </>
   );

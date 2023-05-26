@@ -9,13 +9,17 @@ function Card(props: Props) {
 
   let title: string,
     description: string,
-    image: { src: string; alt: string },
+    image: { src: { src: string } | string; alt: string },
     restOfChildren: any[] = [];
 
   try {
     title = children[0].props.children;
     description = children[1].props.children;
-    image = children[2].props.children.props;
+    image = children[2].props.children.props as {
+      alt: string;
+      src: string | { src: string };
+    };
+    console.log(image);
     if (children.length > 3) {
       restOfChildren = children.slice(3);
     }
@@ -27,7 +31,8 @@ function Card(props: Props) {
     <div className={classes.card + " p-[30px]  rounded-xl"}>
       <h3 className="flex items-center font-bold leading-6 mb-5 text-2xl">
         <img
-          src={image.src}
+          // @ts-ignore
+          src={image.src.src || image.src}
           width="20"
           height="20"
           alt={image.alt}

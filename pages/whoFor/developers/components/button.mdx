@@ -1,0 +1,107 @@
+---
+title: Button
+---
+
+import React from "react";
+import Button from "../../../../components/Button/Button";
+
+## Button Component Documentation
+
+The `Button` component is a reusable React component that renders a button with a specified link and an associated icon. It allows you to create interactive buttons with custom link destinations and icons.
+
+<div style={{marginTop: "20px"}} />
+
+<Button>
+      [Install](http://stackoverflow.com)
+      ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+</Button>
+
+### Usage
+
+To use the `Button` component, follow the steps below:
+
+1.  Import the `Button` component into your React application:
+
+    ```jsx
+    import Button from "./Button";
+    ```
+
+2.  Render the `Button` component in your JSX code, providing the link, link text, and icon URL as children:
+
+        ```jsx copy
+        <Button>
+
+    [Link-Text](Link)
+    ![](IconLink)
+
+    </Button>
+
+        ```
+
+    Note: Ensure that the link, link text, and icon URL are specified in the correct structure within the Button componen
+
+### Props
+
+The `Button` component accepts the following prop:
+
+- `children` (optional): Specifies the content of the button. It can include the link and icon information. If not provided, an error message will be displayed.
+
+#### Example
+
+```jsx copy filename="App.tsx"
+function App() {
+  return (
+    <Button>
+      [Install](http://stackoverflow.com)
+      ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+    </Button>
+  );
+}
+
+export default App;
+```
+
+In this example, the `Button` component is used to render a button with the text "Install" as a link to `"http://stackoverflow.com"` and an icon represented by the URL `"https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg"`.
+
+#### Button Component Code
+
+Below is the code for the `Button` component:
+
+```jsx copy filename="Button.jsx"
+import React from "react";
+import classes from "./button.module.css";
+
+interface Props {
+  children?: any;
+}
+
+function Button(props: Props) {
+  const { children } = props;
+
+  let icon, link;
+
+  try {
+    link = children.props.children[0].props;
+    icon = children.props.children[2].props;
+  } catch (err) {
+    return "Please specify a proper structure";
+  }
+
+  return (
+    <a
+      className={
+        classes.button +
+        " flex justify-center items-center border space-x-2 p-2 text-center rounded-full   button transition-all font-bold"
+      }
+      href={link.href}
+    >
+      <span>
+        <img className="w-4 h-4" src={icon.src} alt={icon.src} />
+      </span>
+      <span>{link.children}</span>
+    </a>
+  );
+}
+
+export default Button;
+```

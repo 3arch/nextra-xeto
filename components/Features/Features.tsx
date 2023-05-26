@@ -1,11 +1,10 @@
 import React from "react";
 interface Props {
   children?: any;
-  columns: number;
 }
 
 function Features(props: Props) {
-  const { children, columns } = props;
+  const { children } = props;
   const featureRef = React.useRef<HTMLDivElement>(null);
 
   let elements: any[] = [];
@@ -50,10 +49,9 @@ function Features(props: Props) {
 
   return (
     <>
-      <script src="https://cdn.tailwindcss.com"></script>
       <div ref={featureRef} className={"space-y-3"}>
         {cards.map((card) => (
-          <div className={""}>{card}</div>
+          <div>{card}</div>
         ))}
       </div>
     </>

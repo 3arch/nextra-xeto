@@ -1,0 +1,54 @@
+---
+title: Brand
+---
+import Brand from "../../../../components/Brand/Brand"
+import Layout from "../../../../components/Layout/Layout"
+
+
+## Brand Component
+
+The `Brand` component is used to apply specific branding styling to any text within your application. It allows you to customize the text color and other styling properties to match your brand identity.
+
+### Usage
+
+Wrap the text you want to style with the `Brand` component:
+
+```mdx copy
+<Brand>
+  Your Text Here
+</Brand>
+```
+
+## Props
+
+The **Brand** component does not accept any additional props. It is a wrapper component designed to apply the branding styles uniformly to the enclosed text.
+
+
+## Styling
+
+The **Brand** component applies predefined styling to the wrapped text, giving it a distinct visual appearance. The specific styling can be customized through CSS or using a CSS-in-JS solution.
+
+## Example
+
+#### Brand with simple text
+
+<Layout columnCount={2}>
+
+Hello there Welcome to <Brand> MyApp!</Brand>
+
+```mdx copy filename="Brand.mdx"
+Hello there Welcome to <Brand> MyApp!</Brand>
+```
+</Layout>
+
+
+#### Brand with heading text
+
+<Layout columnCount={2}>
+
+ ### Hello there ! Welocme to <Brand>My App</Brand>
+
+```mdx copy filename="BrandHeading.mdx"
+ ### Hello there ! Welocme to <Brand>My App</Brand>
+```
+</Layout>

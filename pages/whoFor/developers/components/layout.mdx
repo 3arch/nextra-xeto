@@ -1,0 +1,232 @@
+---
+title: Layout
+---
+
+import React from "react";
+import Layout from "../../../../components/Layout/Layout"
+import Button from "../../../../components/Button/Button"
+import Card from "../../../../components/Card/Card"
+import Feature from "../../../../components/Features/Feature"
+
+## Layout Component Documentation
+
+The `Layout` component is a reusable React component that provides a flexible layout for rendering child components side by side. It allows you to define the number of columns in which the child components should be arranged.
+
+
+### Usage
+
+To use the `Layout` component, follow the steps below:
+
+1. Import the `Layout` component into your React application:
+
+   ```jsx
+   import Layout from "../../../../components/Layout/Layout"
+   ```
+
+2. Render the `Layout` component in your JSX code, providing the desired number of columns as the `columnCount` prop:
+
+   ```jsx
+   <Layout columnCount={2}>{/* Add your child components here */}</Layout>
+   ```
+
+3. Place the child components within the opening and closing tags of the `Layout` component. These child components will be arranged side by side based on the specified `columnCount`:
+
+   ```mdx
+   <Layout columnCount={2}>
+     <Button>One</Button>
+     <Button>Two</Button>
+   </Layout>
+   ```
+
+### Props
+
+The `Layout` component accepts the following props:
+
+- `columnCount` (optional): Specifies the number of columns in which the child components should be arranged. It expects a number value. If not provided, the default value is `1`.
+
+
+### Example
+
+### 1.  Two column layout with button component
+```jsx code filename="TwoButton.tsx"
+<Layout columnCount={2}>
+  <Button>
+    [Install](http://stackoverflow.com)
+    ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+  </Button>
+  <Button>
+    [Install](http://stackoverflow.com)
+    ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+  </Button>
+</Layout>
+```
+
+<Layout columnCount={2}>
+  <Button>
+    [Install](http://stackoverflow.com)
+    ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+  </Button>
+  <Button>
+    [Install](http://stackoverflow.com)
+    ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+  </Button>
+</Layout>
+
+
+### 2.  Two column layout with Card 
+
+```jsx code filename="TwoButton.tsx"
+<Layout columnCount={2}>
+  <Card>
+    ## Develop easier There is no need for your team to learn new complicated
+    database languages. Getting started with SurrealDB is as simple as one command
+    and advanced functionality is simple to understand, whilst still being fast
+    and performant.
+
+    ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+</Card>
+  <Card>
+    ## Develop easier There is no need for your team to learn new complicated
+    database languages. Getting started with SurrealDB is as simple as one command
+    and advanced functionality is simple to understand, whilst still being fast
+    and performant.
+
+    ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+</Card>
+</Layout>
+```
+
+<Layout columnCount={2}>
+  <Card>
+    ## Develop easier There is no need for your team to learn new complicated
+    database languages. Getting started with SurrealDB is as simple as one command
+    and advanced functionality is simple to understand, whilst still being fast
+    and performant.
+
+    ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+</Card>
+  <Card>
+    ## Develop easier There is no need for your team to learn new complicated
+    database languages. Getting started with SurrealDB is as simple as one command
+    and advanced functionality is simple to understand, whilst still being fast
+    and performant.
+
+    ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+</Card>
+</Layout>
+
+
+### 3.  Three column layout with Feature e 
+
+```jsx code filename="TwoButton.tsx"
+<Layout columnCount={3}>
+  <Feature>
+    ### Multi-table, multi-row transactions As a fully ACID
+    compliant database, SurrealDB allows you to run transactions across
+    multiple-rows, and across multiple different tables. There is no limit to the
+    length of time a transaction can run.
+    ### COMPLETE:planned
+
+     
+
+  </Feature>
+
+  <Feature>
+    ### Multi-table, multi-row transactions As a fully ACID
+    compliant database, SurrealDB allows you to run transactions across
+    multiple-rows, and across multiple different tables. There is no limit to the
+    length of time a transaction can run.
+    ### COMPLETE:planned
+
+     
+  </Feature>
+
+
+  <Feature>
+    ### Multi-table, multi-row transactions As a fully ACID
+    compliant database, SurrealDB allows you to run transactions across
+    multiple-rows, and across multiple different tables. There is no limit to the
+    length of time a transaction can run.
+    ### COMPLETE:planned
+
+  </Feature>
+</Layout>
+```
+
+<Layout columnCount={3}>
+  <Feature>
+    ### Multi-table, multi-row transactions As a fully ACID
+    compliant database, SurrealDB allows you to run transactions across
+    multiple-rows, and across multiple different tables. There is no limit to the
+    length of time a transaction can run.
+    ### COMPLETE:planned
+
+     
+
+  </Feature>
+
+  <Feature>
+    ### Multi-table, multi-row transactions As a fully ACID
+    compliant database, SurrealDB allows you to run transactions across
+    multiple-rows, and across multiple different tables. There is no limit to the
+    length of time a transaction can run.
+    ### COMPLETE:planned
+  </Feature>
+
+
+  <Feature>
+    ### Multi-table, multi-row transactions As a fully ACID
+    compliant database, SurrealDB allows you to run transactions across
+    multiple-rows, and across multiple different tables. There is no limit to the
+    length of time a transaction can run.
+    ### COMPLETE:planned
+
+  </Feature>
+</Layout>
+
+
+
+
+## The Actual Component
+
+```jsx copy filename="Layout.jsx"
+import React from "react";
+import classes from "./layout.module.css";
+
+interface Props {
+  children?: any;
+  columnCount?: number;
+}
+
+function Layout(props: Props) {
+  let  { children, columnCount=1 } = props;
+  let width = 100;
+
+  if(columnCount  = 2){
+    width  = width /columnCount;
+  }
+
+  
+
+  return (
+    <>
+      <div
+        className={classes.layout}
+        style={columnCount ? {
+          gridTemplateColumns: `repeat(${columnCount}, 1fr)`
+        } : {}}
+      >
+        {children.map((child) => (
+          <div  style={{width:  width+"%", padding:"0 10px"}}>
+            {child}
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+export default Layout;
+
+
+```

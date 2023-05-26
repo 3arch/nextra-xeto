@@ -21,8 +21,8 @@ const HeaderGradient = ({ tag, gradientStrings, title, description, align }) => 
   let gradientDescription = description;
   gradientWords.forEach(word => {
     const gradientHTML = `<span class=${classes.titleGradient}>${word}</span>`;
-    gradientTitle = gradientTitle.replace(word, gradientHTML);
-    gradientDescription = gradientDescription.replace(word, gradientHTML);
+    gradientTitle = gradientTitle?.replace(word, gradientHTML);
+    gradientDescription = gradientDescription?.replace(word, gradientHTML);
   });
 
   return (

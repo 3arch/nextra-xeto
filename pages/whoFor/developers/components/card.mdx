@@ -1,0 +1,196 @@
+---
+title: Card
+---
+
+import React from "react";
+import Card from "../../../../components/Card/Card";
+import Button from "../../../../components/Button/Button";
+import Feature from "../../../../components/Features/Feature";
+import Layout from "../../../../components/Layout/Layout";
+
+## Card Component
+
+The `Card` component allows you to create a card with a title, description, and an optional icon image. It provides a visually appealing way to display content in your application.
+
+<div className="mt-5" />
+<Card>
+
+  ## Develop easier
+  There is no need for your team to learn new complicated Surreal database languages. Getting started with SurrealDB is as simple as one command and advanced functionality is simple to understand, whilst still being fast and performant.
+  
+  ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+</Card>
+
+
+### Usage
+
+To use the `Card` component, follow these steps:
+
+1. Import the `Card` component into your React application:
+
+   ```jsx copy
+   import Card from "./Card";
+    ```
+2. Render the Card component in your JSX code, providing the title, description, and icon image as children:
+    ```mdx copy 
+    <Card>
+        ## Title
+        Description
+        {/* <this space is necessary> */}
+        ![](Icon-Image-Link)
+    </Card>
+    ```
+Note: Make sure to replace Title with your desired title, Description with your desired description, and Icon-Image-Link with the URL of the icon image you want to display in the card.
+
+
+### Structure Requirements
+
+When using the `Card` component, make sure to follow this structure:
+
+1. `## Title` - This specifies the title for the card.
+2. `Description` - This provides a description for the card.
+3. `<this space is necessary>` - This empty line is necessary to separate the description from the icon image.
+4. `![](Icon-Image-Link)` - This includes the icon image in the card. Replace `Icon-Image-Link` with the URL of the desired icon image.
+
+Ensure that the title, description, and icon image are defined within the `Card` component in the specified structure.
+
+### Example
+Here is an example of how you can use the **Card** component
+```mdx copy
+<Card>
+  ## Develop easier
+  There is no need for your team to learn new complicated Surreal database languages. Getting started with SurrealDB is as simple as one command and advanced functionality is simple to understand, whilst still being fast and performant.
+  
+  ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+</Card>
+```
+
+In this example, the Card component is used to create a card with the title "Develop easier," a corresponding description, and an icon image.
+
+By using the Card component, you can easily create visually appealing cards with titles, descriptions, and icons in your React application.
+
+    ##### Simple Card
+
+<Layout columnCount={3}>
+
+   ```jsx copy filename="Card.tsx"
+    <Card>
+        ## Develop easier
+        There is no need for your team to learn new complicated Surreal database languages. Getting started with SurrealDB is as simple as one command and advanced functionality is simple to understand, whilst still being fast and performant.
+        
+        ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+
+    </Card>
+    ```
+
+    <Card>
+        ## Develop easier
+        There is no need for your team to learn new complicated Surreal database languages. Getting started with SurrealDB is as simple as one command and advanced functionality is simple to understand, whilst still being fast and performant.
+        
+        ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+    </Card>
+    
+ 
+    
+</Layout>
+
+  ##### Card with Button
+
+<Layout columnCount={3}>
+
+   ```jsx copy filename="Card.tsx"
+    <Card>
+        ## Develop easier
+        There is no need for your team to learn new complicated Surreal database languages. Getting started with SurrealDB is as simple as one command and advanced functionality is simple to understand, whilst still being fast and performant.
+        
+        ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+
+        <Button>
+            [Install](http://stackoverflow.com)
+            ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+        </Button>
+    </Card>
+    ```
+
+    <Card>
+        ## Develop easier
+        There is no need for your team to learn new complicated Surreal database languages. Getting started with SurrealDB is as simple as one command and advanced functionality is simple to understand, whilst still being fast and performant.
+        
+        ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+
+        <Button>
+            [Install](http://stackoverflow.com)
+            ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+        </Button>
+    </Card>
+    
+ 
+    
+</Layout>
+
+
+
+
+
+## The actual component
+
+```jsx copy filename="Card.tsx"
+import React from "react";
+import classes from "./card.module.css";
+interface Props {
+  children?: any;
+}
+
+function Card(props: Props) {
+  const { children } = props;
+
+  let title: string,
+    description: string,
+    image: { src: { src: string } | string; alt: string },
+    restOfChildren: any[] = [];
+
+  try {
+    title = children[0].props.children;
+    description = children[1].props.children;
+    image = children[2].props.children.props as {
+      alt: string;
+      src: string | { src: string };
+    };
+    console.log(image);
+    if (children.length > 3) {
+      restOfChildren = children.slice(3);
+    }
+  } catch (err) {
+    return "Please Specify a proper structure";
+  }
+
+  return (
+    <div className={classes.card + " p-[30px]  rounded-xl"}>
+      <h3 className="flex items-center font-bold leading-6 mb-5 text-2xl">
+        <img
+          // @ts-ignore
+          src={image.src.src || image.src}
+          width="20"
+          height="20"
+          alt={image.alt}
+          className="mr-3"
+        />
+        {title}
+      </h3>
+
+      <p className="text-base text-[#989cad] ">{description}</p>
+      {restOfChildren.length ? (
+        <div className="mt-4">{restOfChildren}</div>
+      ) : null}
+    </div>
+  );
+}
+
+export default Card;
+
+```
+
+
+
+
+

@@ -1,0 +1,177 @@
+import Heading from "../../../../components/Heading/Heading"
+import Button from "../../../../components/Button/Button";
+import Feature from "../../../../components/Features/Feature";
+import Layout from "../../../../components/Layout/Layout";
+
+## Heading Component
+
+The `Heading` component allows you to render a heading with a title and description. It provides a convenient way to display headings with associated content in your application.
+
+<div style={{marginTop: "30px"}} />
+<Heading>
+  ## Develop easier There is no need for your team to learn new complicated
+  database languages. Getting started with SurrealDB is as simple as one command
+  and advanced functionality is simple to understand, whilst still being fast
+  and performant.
+  
+</Heading>
+
+### Usage
+
+To use the `Heading` component, follow these steps:
+
+1. Import the `Heading` component into your React application:
+
+   ```jsx
+   import Heading from "./Heading";
+   ```
+2. Render the **Heading** component in your JSX code, providing the title and description as children:
+
+    ```mdx
+    <Heading>
+        ## Title
+        Description
+    </Heading>
+    ```
+Note: Replace **Title** with your desired heading title and **Description** with the corresponding description text.
+
+
+### Props
+
+The `Heading` component accepts the following props:
+
+- `children` (required): The content of the heading, including the title and description.
+
+
+### Structure Requirements
+
+When using the `Heading` component, make sure to follow this structure:
+
+1. `## Title` - This specifies the title for the heading.
+2. `Description` - This provides the description for the heading.
+
+Ensure that the title and description are defined within the **`Heading`** component in the specified structure.
+
+By using the **Heading** component, you can easily create headings with titles and descriptions in your React application.
+
+
+
+### Example
+Here is an example of how you can use the **Heading** component:
+
+```jsx copy
+<Heading>
+    ## Develop easier
+    There is no need for your team to learn new complicated database languages. Getting started with SurrealDB is as simple as one command and advanced functionality is simple to understand, whilst still being fast and performant.
+</Heading>
+```
+In this example, the **Heading** component is used to render a heading with the title "Develop easier" and the corresponding description.
+
+By using the **Heading** component, you can easily create headings with titles and descriptions in your React application.
+
+    #### Simple Heading 
+    <Layout>
+        <Heading>  
+            ## Develop easier There is no need for your team to learn new complicated
+            &nbsp;
+        </Heading>
+
+        ```mdx copy filename="SimpleHeading.mdx"
+         <Heading>  
+            ## Develop easier There is no need for your team to learn new complicated
+            &nbsp;
+        </Heading>
+        ```
+
+    </Layout>
+
+     ####  Heading with description
+
+    <Layout>
+        <Heading>  
+            ## Develop easier There is no need for your team to learn new complicated
+            Getting started with SurrealDB is as simple as one command
+            and advanced functionality is simple to understand, whilst still being fast
+            and performant.
+        </Heading>
+
+        ```mdx copy filename="HeadingWithDescription.mdx"
+         <Heading>  
+            ## Develop easier There is no need for your team to learn new complicated
+            Getting started with SurrealDB is as simple as one command
+            and advanced functionality is simple to understand, whilst still being fast
+            and performant.
+        </Heading>
+        ```
+
+    </Layout>
+
+    ####  Heading with a button
+
+    <Layout>
+        <Heading>  
+            ## Develop easier There is no need for your team to learn new complicated
+            Getting started with SurrealDB is as simple as one command
+            and advanced functionality is simple to understand, whilst still being fast
+            and performant.
+
+             <Button>
+                [Install](http://stackoverflow.com)
+                ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+              </Button>
+        </Heading>
+
+        ```mdx copy filename="HeadingWithDescription.mdx"
+         <Heading>  
+            ## Develop easier There is no need for your team to learn new complicated
+            Getting started with SurrealDB is as simple as one command
+            and advanced functionality is simple to understand, whilst still being fast
+            and performant.
+            <Button>
+                [Install](http://stackoverflow.com)
+                ![](https://surrealdb.com/static/img/home/tick-a3e79715894a5e7d6793a1f38a424c44.svg)
+              </Button>
+        </Heading>
+        ```
+
+    </Layout>
+    
+
+
+### The actual Heading component
+
+``` jsx copy filename="Heading.tsx"
+import React from "react";
+interface Props {
+  children?: any;
+}
+
+function Heading(props: Props) {
+  const { children } = props;
+  let heading,
+    description,
+    restOfChildren: any[] = [];
+  try {
+    heading = children[0].props.children;
+    description = children[1].props.children;
+
+    if (children.length > 2) {
+      restOfChildren = children.slice(2);
+    }
+  } catch (err) {
+    return "Please specify the proper format";
+  }
+
+  return (
+    <div className="text-center my-3">
+      <h1 className="font-bold leading-6 mb-5 text-2xl">{heading}</h1>
+      <p className="text-base text-[#989cad] dark:text-white">{description}</p>
+
+      <div className="mt-4">{restOfChildren}</div>
+    </div>
+  );
+}
+
+export default Heading;
+
+```
