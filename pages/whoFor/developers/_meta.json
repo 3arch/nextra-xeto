@@ -6,8 +6,9 @@
   "-- ": {
     "type": "separator",
     "title": "Getting Started"
-    },  
-  "libraries": "Libraries",
+    },
+    "install": "Install Steps",  
+    "libraries": "Libraries",
     "grammar": "",
     "--": {
       "type": "separator",
