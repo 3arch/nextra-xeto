@@ -1,0 +1,452 @@
+
+## Defining Spec
+
+Next we'll start playing with the spec.xeto file and see how we can build out specs and types. 
+
+### Spec Meta Data
+
+You can define spec meta data using \<\> 
+
+```bash copy filename="Spec with added meta in spec.xeto"
+// Some new added spec documentation
+MySpec : Dict <fooMetaTag> {
+    serialNumber: Number "55"
+    productNumber: Number
+}
+```
+
+Printed output - 
+
+``` bash copy filename="Printed Spec with Meta Tags"
+axon> MySpec
+myNewLib::MySpec: sys::Dict <fooMetaTag> {
+  serialNumber: sys::Number <val: sys::Number "55">
+  productNumber: sys::Number
+}
+axon>
+```
+
+### Scalars
+
+  You can formally define a scalar in a Spec using this structure.
+
+```copy filename="Scalar Definition Structure"
+<varName>: <varType> <varValue>
+```
+
+  Continuing to use myNewLib, let's add a few defferent scalar types to MySpec.
+
+
+### Numbers, Dates
+
+Here is an example of adding some number scalars to MySpec - 
+
+```bash copy filename="Adding a number scalar to a spec"
+// Some new added spec documentation
+MySpec : Dict {
+    serialNumber: Number "55"
+    productNumber: Number
+}
+```
+
+In the above, you have a number formally defined as well as a scalar without a specific value. Try running the print function on MySpec (remember you have to reload the environment first if you're in the Axon CLI).
+
+
+```bash copy filename="Print output"
+axon> print(MySpec, {doc})
+// Some new spec documentation
+myNewLib::MySpec: sys::Dict {
+  serialNumber: sys::Number <val: sys::Number "55">
+  productNumber: sys::Number
+}
+axon>
+```
+You'll also notice if you change the text in the commented out text above the Spec definition that it gets passed through as the spec documentation through the print function.
+
+### Str default
+
+Here's an example of adding a string scalar to MySpec - 
+
+```bash copy filename="Adding string scalars to a spec"
+// Some new added spec documentation
+MySpec : Dict {
+    serialNumber: Number "55"
+    productNumber: Number
+    buildingName: Str "My House"
+    address: "12345 Main St"
+}
+```
+
+And the printed spec output - 
+
+```bash copy filename="Print output"
+axon> MySpec
+myNewLib::MySpec: sys::Dict {
+  serialNumber: sys::Number <val: sys::Number "55">
+  productNumber: sys::Number
+  buildingName: sys::Str <val: "My House">
+  address: sys::Str <val: "12345 Main St">
+}
+axon>
+```
+
+
+Something to note, if you leave off the varType it defaults to a string as seen above. 
+
+### Markers
+
+You can formally define marker type or just leave of varType and varValue to default the scalar type to marker.
+
+```bash copy filename="Adding string scalars to a spec"
+// Some new spec documentation
+MySpec : Dict {
+    serialNumber: Number "55"
+    productNumber: Number
+    buildingName: Str "My House"
+    address: "12345 Main St"
+    site: Marker
+    someOtherMarker
+}
+```
+
+And the printed spec output - 
+
+```bash copy filename="Print output"
+axon> MySpec
+myNewLib::MySpec: sys::Dict {
+  serialNumber: sys::Number <val: sys::Number "55">
+  productNumber: sys::Number
+  buildingName: sys::Str <val: "My House">
+  address: sys::Str <val: "12345 Main St">
+  site
+  someOtherMarker
+}
+```
+
+
+### Custom Scalar Specs
+
+Taking it one step further you can create any new scalars by extending Scalar type. Let's create a Color scalar type that extends Scalar
+
+```bash copy filename="Newly Defined Color Scalar Type"
+// Some new spec documentation
+MySpec : Dict {
+    serialNumber: Number "55"
+    productNumber: Number
+    hous: Color "white"
+    trim: Color 
+}
+
+Color: Scalar "blue"
+```
+
+And the printed output for both the new scalar spec as well as the MySpec that has it as a property. 
+
+```bash copy filename="Printed Color and MySpec"
+axon> Color
+myNewLib::Color: sys::Scalar <val: "blue">
+axon> MySpec
+myNewLib::MySpec: sys::Dict {
+  serialNumber: sys::Number <val: sys::Number "55">
+  productNumber: sys::Number
+  hous: myNewLib::Color <val: "white">
+  trim: myNewLib::Color
+}
+axon>
+```
+
+
+## Sequences (aka Collections)
+
+### Dict name/unnamed
+
+Dictionaries have keys and values, however if a value doesn't have a key there is a default naming standard. In the below example tow of the keys do not have names. The unnamed dict values are given the names '_0' and '_1'
+
+
+```bash copy filename="Dict Example Spec"
+MySpec : Dict {
+    a: "alpha"
+    "beta"
+    "charlie"
+}
+```
+
+For the above spec definition, the informal printed output looks like - 
+
+```bash copy filename="Dict Example Printed"
+axon> MySpec
+myNewLib::MySpec: sys::Dict {
+  a: sys::Str <val: "alpha">
+  sys::Str <val: "beta">
+  sys::Str <val: "charlie">
+}
+axon>
+```
+
+But if you print the formal JSON output you'll see the unnamed dictionary naming convention - 
+
+```copy filename="Dict Example Printed"
+axon> specAst(MySpec).print({json})
+{
+  "base": "sys::Dict",
+  "doc": "Associative array of name/value pairs",
+  "slots": {
+    "a": {
+      "type": "sys::Str",
+      "val": "alpha"
+    },
+    "_0": {
+      "type": "sys::Str",
+      "val": "beta"
+    },
+    "_1": {
+      "type": "sys::Str",
+      "val": "charlie"
+    }
+  }
+}
+axon>
+```
+
+
+### Lists
+
+In lists, there are no name for slots - 
+
+```bash copy filename="List Example"
+MySpec : List {
+    "alpha"
+    "beta"
+    "charlie"
+}
+```
+The printed output - 
+
+```bash copy filename="List Example"
+axon> MySpec
+myNewLib::MySpec: sys::List {
+  sys::Str <val: "alpha">
+  sys::Str <val: "beta">
+  sys::Str <val: "charlie">
+}
+axon>
+```
+
+### Typed Lists using 'Of'
+
+You can statically type a list using 'of' in the list spec meta - 
+
+
+```bash copy filename="List Example"
+MySpec : List <of:Str{
+    "alpha"
+    "beta"
+    "charlie"
+}
+```
+The printed output - 
+
+```bash copy filename="List Example"
+axon> MySpec
+myNewLib::MySpec: sys::List <of: sys::Str> {
+  sys::Str <val: "alpha">
+  sys::Str <val: "beta">
+  sys::Str <val: "charlie">
+}
+```
+
+## Dependencies
+
+### Type Name vs Qualified Type Name
+
+There are two different names for spec slots, the regular name and the qualified name (or qname). The qname is the absolute name that tells you the exact library the type is in where as the regular name is just the name of the type. In the example above, the regular name of our spec would be 'MySpec' whereas the qname would be 'myNewLib::MySpec'. The libraries that are available are defined in the 'lib.xeto' file. 
+
+```bash copy filename="MyNewLib's lib.xeto with multiple dependencies"
+pragma: Lib <
+  doc: "My New Library that depends on the ph library."
+  version: "0.0.1"
+  depends: {
+    { lib: "sys", versions: "0.1.x" }
+    { lib: "ph", versions: "0.1.x" }
+  }
+  org: {
+    dis: "TODO"
+    uri: "TODO"
+  }
+> 
+```
+
+### Ambiguous names
+
+Ambiguous name errors happen when a regular type name is used in a spec when there are multiple types with identiacl regular names from different libraries in the current enviroment scope. For example, if you create an Rtu spec in MyNewLib after placing that dependency in the lib.xeto file you will get an error - 
+
+``` bash copy filename="New Rtu type in MyNewLib"
+MySpec : List <of: Str> {
+    "alpha"
+    "beta"
+    "charlie"
+}
+
+Rtu : Equip {
+    myNewTag
+}
+```
+
+Notice that the two conflicting libs are named in the rror message for easy debugging. 
+
+``` bash copy filename="Ambiguous Name Error when printing"
+axon> Rtu
+ERROR: sys::Err: Ambiguous types for 'Rtu' [myNewLib::Rtu, ph::Rtu]
+sys::Err: Ambiguous types for 'Rtu' [myNewLib::Rtu, ph::Rtu]
+  axon::AxonUsings.resolve (AxonUsings.fan:63)
+  axon::AxonUsings.resolve (AxonUsings.fan)
+  axon::SpecTypeRef.eval (Spec.fan:57)
+  axon::AxonContext.evalExpr (AxonContext.fan:117)
+  axon::AxonContext.eval (AxonContext.fan:110)
+  axon::AxonContext.eval (AxonContext.fan)
+  axonsh::ShellContext.run (ShellContext.fan:90)
+  axonsh::ShellContext.runInteractive (ShellContext.fan:61)
+  axonsh::Main.main (Main.fan:28)
+  java.lang.reflect.Method.invoke (Method.java:498)
+  fan.sys.Method.invoke (Method.java:573)
+  fan.sys.Method$MethodFunc.callOn (Method.java:244)
+  fan.sys.Method.callOn (Method.java:139)
+  fanx.tools.Fan.callMain (Fan.java:185)
+  fanx.tools.Fan.executeType (Fan.java:147)
+  fanx.tools.Fan.execute (Fan.java:41)
+  fanx.tools.Fan.run (Fan.java:308)
+  fanx.tools.Fan.main (Fan.java:346)
+axon>
+```
+
+If you print using the qname however, it will return successfully - 
+
+```bash copy filename="Printing using qname"
+This is a bug that needs to be fixed, not currently working
+```
+
+## Composition
+
+Next we'll talk about how types can leverage other types.
+
+## Inheritance
+
+Inheritance is a type that enhances a previously defined type. To this point we have been unsing the print(MySpec, \{doc\}) syntax to print the spec spots, however you can add the \{effective\} tag to that as well to print the full list of inherited slots as well.
+
+Let's say you create an extension of the ph::Rtu spec like this - 
+
+```bash copy filename="My New Rtu Spec"
+MyNewRtu : Rtu {
+    myNewTag
+}
+```
+
+Whe we print normally it looks like this where you can see that it is inheriting from ph::Rtu, but you don't get the slots from that inherited spec. 
+
+```bash copy filename="Printing Spec Slots"
+axon> MyNewRtu
+myNewLib::MyNewRtu: ph::Rtu {
+  myNewTag
+}
+```
+
+However compared to printing with the effective flag, you now get the slots that are inherited not only from the Rtu spec, but also the Ahu, and Equip specs the the Rtu spec inherit from. 
+
+```bash copy filename="Printing Inherited Spec Slots"
+axon> print(MyNewRtu, {effective})
+myNewLib::MyNewRtu: ph::Rtu {
+  equip
+  points: sys::Query <of: ph::Point, inverse: "ph::Point.equips">
+  ahu
+  rtu
+  myNewTag
+}
+axon>
+```
+
+
+### Inheritance using AND 
+
+You can use intersection operators when inheriting from other spec. The AND operator is called using the ampersand (&).
+
+```bash copy filename="Defining MyEquip with AND inheritance"
+MyNewRtu : Rtu & MyEquip {
+    myNewTag
+}
+
+MyEquip : Equip {
+    shortName: Str 
+}
+```
+
+When printing you can see below that the MyNewRtu spec is in the MyNewLib library, and inherits all slots from both the ph::Rtu spec AND the myNewLib::MyEquip spec. 
+
+```bash copy filename="Printing spec that used & operator"
+axon> print(MyNewRtu, {effective})
+myNewLib::MyNewRtu: ph::Rtu & myNewLib::MyEquip {
+  equip
+  points: sys::Query <of: ph::Point, inverse: "ph::Point.equips">
+  ahu
+  rtu
+  shortName: sys::Str
+  myNewTag
+}
+axon>
+```
+
+If there are duplicate slots in an AND inplementation, the library build will error out. 
+
+### Inheritance using OR
+
+You can also use union operators when inheriting. The OR operator is called using the pipe symbol ( | ). This can be seen in a slot definion example - 
+
+```bash copy filename="Example OR operator in the shortName slot"
+MyNewRtu : Rtu & MyEquip {
+    myNewTag
+}
+
+MyEquip : Equip {
+    shortName: Str | Number
+}
+```
+
+```bash copy filename="Printed output of the shortName OR slot being inherited by MyNewRtu"
+axon> print(MyNewRtu, {effective})
+myNewLib::MyNewRtu: ph::Rtu & myNewLib::MyEquip {
+  equip
+  points: sys::Query <of: ph::Point, inverse: "ph::Point.equips">
+  ahu
+  rtu
+  shortName: sys::Str | sys::Number
+  myNewTag
+}
+axon>
+```
+
+### Optional Slots using the 'Maybe' Operator
+
+If a slot under a spec is optional, you can use the MAYBE operator, defined by a question mark (?), or more formally through the adding the \<maybe\> meta data to a slot
+
+```bash copy filename="Defining an optional slot under a spec"
+MyEquip : Equip {
+    shortName: Str | Number
+    installationDate: Date?
+    installer: Str <maybe>
+}
+```
+
+```bash copy filename="Printing a spec with optional slots"
+axon> print(MyEquip, {effective})
+myNewLib::MyEquip: ph::Equip {
+  equip
+  points: sys::Query <of: ph::Point, inverse: "ph::Point.equips">
+  shortName: sys::Str | sys::Number
+  installationDate: sys::Date?
+  installer: sys::Str?
+}
+axon>
+```
+
+---
+
+In the next chapter we'll cover how to validate using these newly created spec!

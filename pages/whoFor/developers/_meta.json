@@ -7,7 +7,8 @@
     "type": "separator",
     "title": "Getting Started"
     },
-    "install": "Install Steps",  
+    "install": "Install Steps",
+    "syntaxOverview": "Syntax Overview",   
     "libraries": "Libraries",
     "grammar": "",
     "--": {
