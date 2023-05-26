@@ -1,0 +1,13 @@
+// Box which is basically a Div
+Box: Dict{
+    box
+    div
+}
+
+Vbox: Box{
+    vertical
+    }
+
+Hbox: Box{
+    horizontal
+    }    

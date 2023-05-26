@@ -206,7 +206,7 @@ There are two main functions to dump spec documantetion - print() and specAst().
 
 Print will return the qualifying names of all slots for a given spec. 
 
-```copy filename="Printing Spec Documentation"
+```jsx copy filename="Printing Spec Documentation"
 axon> print(MySpec, {doc})
 // My spec documentation
 myNewLib::MySpec: sys::Dict
@@ -216,7 +216,7 @@ axon>
 The specAst function will build an abstract syntax tree of dicts, lists, and strings of the effective meta and slots for the given spec.
 
 
-```copy filename="Printing Spec AST"
+```jsx copy filename="Printing Spec AST"
 axon> specAst(MySpec)
 {base: "sys::Dict", doc: "My spec documentation"}
 axon>
@@ -226,7 +226,7 @@ axon>
 You can also convert the AST tree to JSON or other structures using print()
 
 
-```copy filename="Printing Spec AST and converting to JSON"
+```jsx copy filename="Printing Spec AST and converting to JSON"
 axon> specAst(MySpec).print({json})
 {
   "base": "sys::Dict",
@@ -243,7 +243,7 @@ Next we'll start playing with the spec.xeto file and see how we can build out sp
 
   You can formally define a scalar in a Spec using this structure.
 
-```copy filename="Scalar Definition Structure"
+```jsx copy filename="Scalar Definition Structure"
 <varName>: <varType> <varValue>
 ```
 
@@ -265,7 +265,7 @@ MySpec : Dict {
 In the above, you have a number formally defined as well as a scalar without a specific value. Try running the print function on MySpec (remember you have to reload the environment first if you're in the Axon CLI).
 
 
-```bash copy filename="Print output"
+```jsx copy filename="Print output"
 axon> print(MySpec, {doc})
 // Some new spec documentation
 myNewLib::MySpec: sys::Dict {
