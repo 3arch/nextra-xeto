@@ -1,0 +1,424 @@
+import { Callout, FileTree } from 'nextra-theme-docs'
+
+# Xeto Setup
+
+These are the steps to work with Xeto on your local machine.
+
+## Cloning the Repo
+
+The first step is to clone the xeto libraries to your machine through the Haxall repository using git. Use the following to clone Haxall. 
+
+```bash copy filename="Command Line"
+git clone https://github.com/haxall/haxall.git
+```
+Once cloned, your root and subdirectories will look like this -
+
+<FileTree>
+  <FileTree.Folder name="rootDir" defaultOpen>
+    <FileTree.Folder name="bin">
+      <FileTree.File name="axon" />
+      <FileTree.File name="axon.bat" />
+      <FileTree.File name="defc" />
+      <FileTree.File name="defc.bat" />
+      <FileTree.File name="hx" />
+      <FileTree.File name="hx.bat" />
+      <FileTree.File name="xeto" />
+      <FileTree.File name="xeto.bat" />
+    </FileTree.Folder>
+    <FileTree.Folder name="etc">
+      <FileTree.Folder name="build">
+        <FileTree.File name="config.props" />
+      </FileTree.Folder>
+    </FileTree.Folder>
+    <FileTree.Folder name="src">
+      <FileTree.File name="Haxall Extensions" />
+    </FileTree.Folder>
+    <FileTree.File name="license" />
+    <FileTree.File name="readme.md" />
+  </FileTree.Folder>
+</FileTree>
+
+
+## Xeto CLI Tools
+
+From your root you can call the xeto tools through the bin directory. You may need to open up file permissions for execution using chmod -  
+
+```bash copy filename="Command Line"
+> chmod +x ./bin/*
+```
+
+---
+
+### env
+
+The env call returns the libraries currently in scope -  
+
+```bash copy filename="Command Line"
+> bin/xeto env
+=== XetoEnv ===
+Lib Path:
+  rootDir/lib/xeto
+Installed Libs:
+  ashrae.g36   [rootDir/lib/xeto/ashrae.g36.xetolib]
+  ph           [rootDir/lib/xeto/ph.xetolib]
+  ph.equips    [rootDir/lib/xeto/ph.equips.xetolib]
+  ph.points    [rootDir/lib/xeto/ph.points.xetolib]
+  ph.resources [rootDir/lib/xeto/ph.resources.xetolib]
+  sys          [rootDir/lib/xeto/sys.xetolib]
+```
+
+The Haxall repo ships with a few xeto libraries, however any new libraries that you create will show up here as well when called.
+
+---
+
+### init
+
+This is the call to create a new xeto library. The single input will be the name of the library you'd like to create.
+
+```bash copy filename="Command Line"
+> ./bin/xeto init myNewLib
+
+  Generate:
+    dir:       rootDir/src/xeto/myNewLib
+    lib.xeto:   rootDir/src/xeto/myNewLib/lib.xeto
+    specs.xeto: rootDir/src/xeto/myNewLib/specs.xeto
+
+  Generate? (y/n)> y
+  Complete
+```
+
+The outputs of this call are two created xeto files - 'lib.xeto' and 'spec.xeto'. These raw files are created in the root directory using the path below -
+
+<FileTree>
+  <FileTree.Folder name="rootDir" defaultOpen>
+    <FileTree.Folder name="src" defaultOpen>
+      <FileTree.Folder name="xeto" defaultOpen>
+        <FileTree.File name="lib.xeto" defaultOpen/>
+        <FileTree.File name="spec.xeto" defaultOpen/>
+      </FileTree.Folder>
+    </FileTree.Folder>
+  </FileTree.Folder>
+</FileTree>
+
+
+Once you run this initialization, you'll immediately see your new library in the env call. The library is available through the source code before you even build the library (see next step).
+ 
+ ---
+  
+### build
+
+This is the call to create a xetolib file from your xeto source code. The xetolib file will be create in your root/lib/xeto directory.
+
+```bash copy filename="Command Line"
+> bin/xeto build myNewLib
+
+  Compiled xetolib [myNewLib]
+```
+
+Once built, a myNewLib.xetolib will be created in the root/lib/xeto directory. This file is compacted and hashed out so it will not be human readable.
+
+---
+
+## A look into the Xeto Files
+
+### lib.xeto
+
+This file contains the metadata for a given library. Here is the output of a new library - 
+
+```bash copy filename="lib.xeto"
+pragma: Lib <
+  doc: "TODO"
+  version: "0.0.1"
+  depends: {
+    { lib: "sys", versions: "0.1.x" }
+  }
+  org: {
+    dis: "TODO"
+    uri: "TODO"
+  }
+>
+```
+
+You should replace the doc field with a summary of your new library as well as a version and organization info. The version will always follow the 3 digit system with major.minor.bug iterations. This file also defined the dependencies which we will get to later. 
+
+---
+
+### spec.xeto
+
+This is what the spec.xeto file looks like immediately after intialization. All types and spec are defined here. The only defined spec in a newly initialized library is a 'MySpec' type that inherits Dict and adds no new slots. 
+
+```bash filename="spec.xeto"
+// My spec documentation
+MySpec : Dict {
+}
+```
+
+In the following chapters we'll talk about what you can build, how to do it, and how to use it. 
+
+---
+
+## Axon CLI
+
+The easiest way to play with newly created xeto libraries is through the Axon CLI, which ships with the Haxall build that we cloned from the start. 
+
+```bash filename="Running the Axon CLI"
+>bin/axon
+ Axon shell v3.1.7.904 ('?' for help, 'quit' to quit)
+ axon>
+```
+
+---
+
+### using()
+
+This first thing you want to do is load the libraries you want to work with. You can do this one by one, or use the "*" parameter to load all libraries in the environment. 
+
+
+```bash filename="Loading all xeto libraries into the CLI"
+axon> using("*")
+using ashrae.g36
+using myNewLib
+using ph
+using ph.equips
+using ph.points
+using ph.resources
+using sys
+axon>
+```
+---
+
+### dataEnvReload()
+
+Using the function **dataEnvReload()** you can reload the libraries in your scope. This is extremely useful because you can use the spec library from the source code in your root directory without having to build a xeto library into a xetolib file. In this case, any change you make to spec.xeto in your 'myNewLib' folder must be immediately followed by a reload to be registered by the Axon CLI. 
+
+```bash filename="Loading all xeto libraries into the CLI"
+axon> dataEnvReload()
+[<date>] [info] [data] DataEnv.reload [<username>]
+axon>
+```
+
+---
+
+### Outputting Documentation
+
+There are two main functions to dump spec documantetion - print() and specAst().
+
+
+Print will return the qualifying names of all slots for a given spec. 
+
+```copy filename="Printing Spec Documentation"
+axon> print(MySpec, {doc})
+// My spec documentation
+myNewLib::MySpec: sys::Dict
+axon>
+```
+
+The specAst function will build an abstract syntax tree of dicts, lists, and strings of the effective meta and slots for the given spec.
+
+
+```copy filename="Printing Spec AST"
+axon> specAst(MySpec)
+{base: "sys::Dict", doc: "My spec documentation"}
+axon>
+```
+
+
+You can also convert the AST tree to JSON or other structures using print()
+
+
+```copy filename="Printing Spec AST and converting to JSON"
+axon> specAst(MySpec).print({json})
+{
+  "base": "sys::Dict",
+  "doc": "My spec documentation"
+}
+axon>
+```
+
+## Defining Spec
+
+Next we'll start playing with the spec.xeto file and see how we can build out specs and types. 
+
+### Scalars
+
+  You can formally define a scalar in a Spec using this structure.
+
+```copy filename="Scalar Definition Structure"
+<varName>: <varType> <varValue>
+```
+
+  Continuing to use myNewLib, let's add a few defferent scalar types to MySpec.
+
+
+### Numbers, Dates
+
+Here is an example of adding some number scalars to MySpec - 
+
+```bash copy filename="Adding a number scalar to a spec"
+// Some new added spec documentation
+MySpec : Dict {
+    serialNumber: Number "55"
+    productNumber: Number
+}
+```
+
+In the above, you have a number formally defined as well as a scalar without a specific value. Try running the print function on MySpec (remember you have to reload the environment first if you're in the Axon CLI).
+
+
+```bash copy filename="Print output"
+axon> print(MySpec, {doc})
+// Some new spec documentation
+myNewLib::MySpec: sys::Dict {
+  serialNumber: sys::Number <val: sys::Number "55">
+  productNumber: sys::Number
+}
+axon>
+```
+You'll also notice if you change the text in the commented out text above the Spec definition that it gets passed through as the spec documentation through the print function.
+
+### Str default
+
+Here's an example of adding a string scalar to MySpec - 
+
+```bash copy filename="Adding string scalars to a spec"
+// Some new added spec documentation
+MySpec : Dict {
+    serialNumber: Number "55"
+    productNumber: Number
+    buildingName: Str "My House"
+    address: "12345 Main St"
+}
+```
+
+And the printed spec output - 
+
+```bash copy filename="Print output"
+axon> MySpec
+myNewLib::MySpec: sys::Dict {
+  serialNumber: sys::Number <val: sys::Number "55">
+  productNumber: sys::Number
+  buildingName: sys::Str <val: "My House">
+  address: sys::Str <val: "12345 Main St">
+}
+axon>
+```
+
+
+Something to note, if you leave off the varType it defaults to a string as seen above. 
+
+### Markers
+
+You can formally define marker type or just leave of varType and varValue to default the scalar type to marker.
+
+```bash copy filename="Adding string scalars to a spec"
+// Some new spec documentation
+MySpec : Dict {
+    serialNumber: Number "55"
+    productNumber: Number
+    buildingName: Str "My House"
+    address: "12345 Main St"
+    site: Marker
+    someOtherMarker
+}
+```
+
+And the printed spec output - 
+
+```bash copy filename="Print output"
+axon> MySpec
+myNewLib::MySpec: sys::Dict {
+  serialNumber: sys::Number <val: sys::Number "55">
+  productNumber: sys::Number
+  buildingName: sys::Str <val: "My House">
+  address: sys::Str <val: "12345 Main St">
+  site
+  someOtherMarker
+}
+```
+
+
+### Custom Scalar Specs
+
+Taking it one step further you can create any new scalars by extending Scalar type. Let's create a Color scalar type that extends Scalar
+
+```bash copy filename="Newly Defined Color Scalar Type"
+// Some new spec documentation
+MySpec : Dict {
+    serialNumber: Number "55"
+    productNumber: Number
+    hous: Color "white"
+    trim: Color 
+}
+
+Color: Scalar "blue"
+```
+
+And the printed output for both the new scalar spec as well as the MySpec that has it as a property. 
+
+```bash copy filename="Printed Color and MySpec"
+axon> Color
+myNewLib::Color: sys::Scalar <val: "blue">
+axon> MySpec
+myNewLib::MySpec: sys::Dict {
+  serialNumber: sys::Number <val: sys::Number "55">
+  productNumber: sys::Number
+  hous: myNewLib::Color <val: "white">
+  trim: myNewLib::Color
+}
+axon>
+```
+
+
+## Sequences (aka Collections)
+
+### Dict name/unnamed
+
+Dictionaries have keys and values, however if a value doesn't have a key there is a default naming standard. In the below example tow of the keys do not have names. The unnamed dict values are given the names '_0' and '_1'
+
+
+```bash copy filename="Dict Example Spec"
+MySpec : Dict {
+    a: "alpha"
+    "beta"
+    "charlie"
+}
+```
+
+For the above spec definition, the informal printed output looks like - 
+
+```bash copy filename="Dict Example Printed"
+axon> MySpec
+myNewLib::MySpec: sys::Dict {
+  a: sys::Str <val: "alpha">
+  sys::Str <val: "beta">
+  sys::Str <val: "charlie">
+}
+axon>
+```
+
+But if you print the formal JSON output you'll see the unnamed dictionary naming convention - 
+
+```copy filename="Dict Example Printed"
+axon> specAst(MySpec).print({json})
+{
+  "base": "sys::Dict",
+  "doc": "Associative array of name/value pairs",
+  "slots": {
+    "a": {
+      "type": "sys::Str",
+      "val": "alpha"
+    },
+    "_0": {
+      "type": "sys::Str",
+      "val": "beta"
+    },
+    "_1": {
+      "type": "sys::Str",
+      "val": "charlie"
+    }
+  }
+}
+axon>
+```
+
+
