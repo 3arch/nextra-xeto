@@ -28,7 +28,7 @@ function Card(props: Props) {
   }
 
   return (
-    <div className={classes.card + " p-[30px]  rounded-xl"}>
+    <div className={ " nx-bg-primary-700/5 nx-rounded-xl nx-subpixel-antialiased dark:nx-bg-primary-300/10 nx-text-[.9em] contrast-more:nx-border contrast-more:nx-border-primary-900/20 contrast-more:nx-contrast-150 contrast-more:dark:nx-border-primary-100/40 p-4"}>
       <h3 className="flex items-center font-bold leading-6 mb-5 text-2xl">
         <img
           // @ts-ignore
@@ -41,7 +41,7 @@ function Card(props: Props) {
         {title}
       </h3>
 
-      <p className="text-base text-[#989cad] ">{description}</p>
+      <p className="text-base">{description}</p>
       {restOfChildren.length ? (
         <div className="mt-4">{restOfChildren}</div>
       ) : null}
