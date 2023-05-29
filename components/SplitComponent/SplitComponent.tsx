@@ -1,5 +1,6 @@
 import React from "react";
-import * as classes from "./splitcomponent.module.css";
+// import * as classes from "./splitcomponent.module.css";
+import classes from "./splitcomponent.module.css";
 export interface StyleProps {
   className?: string;
   style?: React.CSSProperties;
@@ -28,7 +29,7 @@ function SplitComponent(props: SliptComponentProps) {
 
   return (
     <div className="flex items-center space-x-6">
-      <div className={classes.imageWrapper + " flex-1"}>
+      <div className={" flex-1"}>
         {image ? (
           <img src={image.src} alt={image.alt} className="w-[80%]" />
         ) : null}
