@@ -1,9 +1,12 @@
 ---
 title: Brand
 ---
-import Brand from "../../../../components/Brand/Brand"
-import Layout from "../../../../components/Layout/Layout"
 
+import Brand from "../../../../components/Brand/Brand";
+import Layout from "../../../../components/Layout/Layout";
+import ScreenShotButton from "../../../../components/ScreenshotButton";
+
+<ScreenShotButton tagName="main" />
 
 ## Brand Component
 
@@ -14,15 +17,12 @@ The `Brand` component is used to apply specific branding styling to any text wit
 Wrap the text you want to style with the `Brand` component:
 
 ```mdx copy
-<Brand>
-  Your Text Here
-</Brand>
+<Brand>Your Text Here</Brand>
 ```
 
 ## Props
 
 The **Brand** component does not accept any additional props. It is a wrapper component designed to apply the branding styles uniformly to the enclosed text.
-
 
 ## Styling
 
@@ -39,16 +39,17 @@ Hello there Welcome to <Brand> MyApp!</Brand>
 ```mdx copy filename="Brand.mdx"
 Hello there Welcome to <Brand> MyApp!</Brand>
 ```
-</Layout>
 
+</Layout>
 
 #### Brand with heading text
 
 <Layout columnCount={2}>
 
- ### Hello there ! Welocme to <Brand>My App</Brand>
+### Hello there ! Welocme to <Brand>My App</Brand>
 
 ```mdx copy filename="BrandHeading.mdx"
- ### Hello there ! Welocme to <Brand>My App</Brand>
+### Hello there ! Welocme to <Brand>My App</Brand>
 ```
+
 </Layout>

@@ -1,6 +1,7 @@
 import ScreenShotButton from "../../../components/ScreenshotButton";
+import ChartExample from "../../../components/Chart/Chart";
 
-<ScreenShotButton tagName="main" />
+<ScreenShotButton />
 
 # Grammar in Programming Languages
 
@@ -101,4 +102,19 @@ Legend for BNF Grammar:
   x*      zero or more times
   x+      one or more times
   x|x     or
+```
+
+```chartjs
+type: bar
+data:
+labels: ["January", "February", "March", "April", "May", "June", "July"]
+datasets:
+    - label: "Dataset 1"
+    data: [0,2,6,1,7,13,2]
+    backgroundColor: "rgba(255, 99, 132, 0.5)"
+
+    - label: "Dataset 2"
+    data: [4,2,11,8,6,1,4]
+    backgroundColor: "rgba(53, 162, 235, 0.5)"
+
 ```

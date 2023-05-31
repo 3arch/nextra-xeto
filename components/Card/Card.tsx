@@ -1,10 +1,13 @@
-import React from "react";
-import classes from "./card.module.css";
+import { useEffect } from "react";
+
 interface Props {
   children?: any;
 }
 
 function Card(props: Props) {
+  useEffect(() => {
+    (async () => {})();
+  }, []);
   const { children } = props;
 
   let title: string,
@@ -28,7 +31,11 @@ function Card(props: Props) {
   }
 
   return (
-    <div className={ " nx-bg-primary-700/5 nx-rounded-xl nx-subpixel-antialiased dark:nx-bg-primary-300/10 nx-text-[.9em] contrast-more:nx-border contrast-more:nx-border-primary-900/20 contrast-more:nx-contrast-150 contrast-more:dark:nx-border-primary-100/40 p-4"}>
+    <div
+      className={
+        " nx-bg-primary-700/5 nx-rounded-xl nx-subpixel-antialiased dark:nx-bg-primary-300/10 nx-text-[.9em] contrast-more:nx-border contrast-more:nx-border-primary-900/20 contrast-more:nx-contrast-150 contrast-more:dark:nx-border-primary-100/40 p-4"
+      }
+    >
       <h3 className="flex items-center font-bold leading-6 mb-5 text-2xl">
         <img
           // @ts-ignore

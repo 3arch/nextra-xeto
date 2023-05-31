@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "./button.module.css";
 interface Props {
   children?: any;
@@ -20,7 +19,7 @@ function Button(props: Props) {
     <a
       className={
         classes.button +
-        " flex justify-center items-center border space-x-2 p-2 text-center rounded-full   button transition-all font-bold"
+        " flex justify-center items-center border space-x-2 p-2 text-center rounded-full   button transition-all font-bold nx-bg-primary-700/5 dark:nx-bg-primary-300/10 contrast-more:nx-border contrast-more:nx-border-primary-900/20 contrast-more:nx-contrast-150 contrast-more:dark:nx-border-primary-100/40 dark:border-none ring-0"
       }
       href={link.href}
     >

@@ -1,0 +1,69 @@
+---
+title: Using YAML Variables in MDX Files
+---
+
+import Layout from "../../../../components/Layout/Layout"
+import Brand from "../../../../components/Brand/Brand"
+import data from 'js-yaml-loader!./data.yml';
+
+
+## Using YAML Variables in MDX Files
+
+To utilize YAML variables in your MDX files, follow these steps:
+
+1. Install the `js-yaml-loader` package using your preferred package manager. For example, with npm:
+
+```bash copy
+npm install js-yaml-loader
+```
+
+2. Create a YAML file (e.g., data.yml) and define your variables within it. For example:
+
+
+```yaml copy filename="data.yml"
+person:
+  age: 24
+  name: "Foo"
+  profession: "Bar"
+
+a: 1
+```
+
+3. In your MDX file, import the YAML file using the `js-yaml-loader` package. The import statement should include the path to the YAML file. For example:
+
+```mdx copy filename="sample.mdx"
+import data from 'js-yaml-loader!../path/to/data.yml';
+
+```
+
+4. Once imported, you can access the variables from the YAML file using dot notation within your MDX file. For example:
+
+```mdx copy filename="sample.mdx"
+The person's age is {data.person.age}
+The value of 'a' is {data.a}
+```
+
+
+## Example
+
+```yaml copy filename="data.yml"
+person:
+  age: 24
+  name: "Foo"
+  profession: "Bar"
+
+a: 1
+```
+
+<Layout>
+```yaml copy filename="sample.mdx"
+import data from 'js-yaml-loader!./yamldata.yml';
+
+<Brand>{data.person.name}</Brand>  is <Brand>{data.person.age}</Brand> years old
+```
+
+<Brand>{data.person.name}</Brand>  is <Brand>{data.person.age}</Brand> years old
+</Layout>
+
+
+By following these steps, you can incorporate YAML variables into your MDX files and access them for dynamic content.

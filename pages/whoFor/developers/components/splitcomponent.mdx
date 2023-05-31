@@ -1,9 +1,12 @@
 import SplitComponent from "../../../../components/SplitComponent/SplitComponent";
 import SplitComponents from "../../../../components/SplitComponent/SplitComponents";
+import ScreenShotButton from "../../../../components/ScreenshotButton";
+
+<ScreenShotButton tagName="main" />
 
 ---
-title: SplitComponent
----
+
+## title: SplitComponent
 
 ## SplitComponent
 
@@ -22,22 +25,24 @@ The `SplitComponent` is a versatile component that allows you to render an image
 
 To use the `SplitComponent`, follow these steps:
 
-1. Import the `SplitComponent` into your React application:
+1.  Import the `SplitComponent` into your React application:
 
-   ```jsx copy
-   import SplitComponent from "../../../../components/SplitComponent/";
-
-2. Render the **SplitComponent** in your JSX code, providing the title, description, and image link as children:
-
-    ```mdx copy
-    <SplitComponent>
-        ## Title
-        Description
-        {/* this space is required */}
-        ![](Image-Link)
-    </SplitComponent>
+    ```jsx copy
+    import SplitComponent from "../../../../components/SplitComponent/";
     ```
-Note: Replace Title with your desired heading title, Description with the corresponding description text, and Image-Link with the URL of the image you want to render.
+
+2.  Render the **SplitComponent** in your JSX code, providing the title, description, and image link as children:
+
+        ```mdx copy
+        <SplitComponent>
+            ## Title
+            Description
+            {/* this space is required */}
+            ![](Image-Link)
+        </SplitComponent>
+        ```
+
+    Note: Replace Title with your desired heading title, Description with the corresponding description text, and Image-Link with the URL of the image you want to render.
 
 ### Structure Requirements
 
@@ -49,15 +54,18 @@ When using the `SplitComponent`, make sure to follow this structure:
 
 Ensure that the title, description, and image link are defined within the `SplitComponent` in the specified structure.
 
-
-
 ### Example
+
 Here is an example of how you can use the **SplitComponent:**
 
 ```jsx copy
 <SplitComponent>
-  ## Database, realtime API layer, and security permissions all-in-one
-  SurrealDB combines the database layer, the querying layer, and the API and authentication layer into one platform. Advanced table-based and row-based customisable access permissions allow for granular data access patterns for different types of users. There's no need for custom backend code and security rules with complicated database development.
+  ## Database, realtime API layer, and security permissions all-in-one SurrealDB
+  combines the database layer, the querying layer, and the API and
+  authentication layer into one platform. Advanced table-based and row-based
+  customisable access permissions allow for granular data access patterns for
+  different types of users. There's no need for custom backend code and security
+  rules with complicated database development.
   ![](https://surrealdb.com/static/img/illustrations/database-api-security-30f3a965e4b86f9b9e24278a6835b41d.png)
 </SplitComponent>
 ```
@@ -65,7 +73,6 @@ Here is an example of how you can use the **SplitComponent:**
 In this example, the **SplitComponent** is used to render the content with the title "Database, realtime API layer, and security permissions all-in-one", the corresponding description, and an image.
 
 By using the **SplitComponent**, you can create visually appealing sections with images and accompanying content in your React application
-
 
     #### Simple Split component
     <SplitComponent>
@@ -77,18 +84,19 @@ By using the **SplitComponent**, you can create visually appealing sections with
 
   </SplitComponent>
 
-  ```mdx copy filename="SimpleSplitComponent.mdx"
-   <SplitComponent>
+```mdx copy filename="SimpleSplitComponent.mdx"
+ <SplitComponent>
 
-      ## Database, realtime API layer, and security permissions all-in-one
-      SurrealDB combines the database layer, the querying layer, and the API and authentication layer into one platform. Advanced table-based and row-based customisable access permissions allow for granular data access patterns for different types of users. There's no need for custom backend code and security rules with complicated database development.
+    ## Database, realtime API layer, and security permissions all-in-one
+    SurrealDB combines the database layer, the querying layer, and the API and authentication layer into one platform. Advanced table-based and row-based customisable access permissions allow for granular data access patterns for different types of users. There's no need for custom backend code and security rules with complicated database development.
 
-      ![](https://surrealdb.com/static/img/illustrations/database-api-security-30f3a965e4b86f9b9e24278a6835b41d.png)
+    ![](https://surrealdb.com/static/img/illustrations/database-api-security-30f3a965e4b86f9b9e24278a6835b41d.png)
 
-  </SplitComponent>
-  ```
+</SplitComponent>
+```
 
-  #### Multiple Split components
+#### Multiple Split components
+
     <SplitComponents>
 
       ## Database, realtime API layer, and security permissions all-in-one
@@ -110,29 +118,28 @@ By using the **SplitComponent**, you can create visually appealing sections with
 
   </SplitComponents>
 
-  ```mdx copy filename="MultipleSplitComponents.mdx"
-    <SplitComponents>
+```mdx copy filename="MultipleSplitComponents.mdx"
+  <SplitComponents>
+
+    ## Database, realtime API layer, and security permissions all-in-one
+    SurrealDB combines the database layer, the querying layer, and the API and authentication layer into one platform. Advanced table-based and row-based customisable access permissions allow for granular data access patterns for different types of users. There's no need for custom backend code and security rules with complicated database development.
+
+    ![](https://surrealdb.com/static/img/illustrations/database-api-security-30f3a965e4b86f9b9e24278a6835b41d.png)
+
+
+     ## Database, realtime API layer, and security permissions all-in-one
+    SurrealDB combines the database layer, the querying layer, and the API and authentication layer into one platform. Advanced table-based and row-based customisable access permissions allow for granular data access patterns for different types of users. There's no need for custom backend code and security rules with complicated database development.
+
+    ![](https://surrealdb.com/static/img/illustrations/database-api-security-30f3a965e4b86f9b9e24278a6835b41d.png)
+
 
       ## Database, realtime API layer, and security permissions all-in-one
-      SurrealDB combines the database layer, the querying layer, and the API and authentication layer into one platform. Advanced table-based and row-based customisable access permissions allow for granular data access patterns for different types of users. There's no need for custom backend code and security rules with complicated database development.
+    SurrealDB combines the database layer, the querying layer, and the API and authentication layer into one platform. Advanced table-based and row-based customisable access permissions allow for granular data access patterns for different types of users. There's no need for custom backend code and security rules with complicated database development.
 
-      ![](https://surrealdb.com/static/img/illustrations/database-api-security-30f3a965e4b86f9b9e24278a6835b41d.png)
+    ![](https://surrealdb.com/static/img/illustrations/database-api-security-30f3a965e4b86f9b9e24278a6835b41d.png)
 
-
-       ## Database, realtime API layer, and security permissions all-in-one
-      SurrealDB combines the database layer, the querying layer, and the API and authentication layer into one platform. Advanced table-based and row-based customisable access permissions allow for granular data access patterns for different types of users. There's no need for custom backend code and security rules with complicated database development.
-
-      ![](https://surrealdb.com/static/img/illustrations/database-api-security-30f3a965e4b86f9b9e24278a6835b41d.png)
-
-
-        ## Database, realtime API layer, and security permissions all-in-one
-      SurrealDB combines the database layer, the querying layer, and the API and authentication layer into one platform. Advanced table-based and row-based customisable access permissions allow for granular data access patterns for different types of users. There's no need for custom backend code and security rules with complicated database development.
-
-      ![](https://surrealdb.com/static/img/illustrations/database-api-security-30f3a965e4b86f9b9e24278a6835b41d.png)
-
-  </SplitComponents>
-  ```
-
+</SplitComponents>
+```
 
 ### This is the SplitComponent implementation
 
@@ -152,8 +159,8 @@ function SplitComponent(props: SliptComponentProps) {
 
   let heading,
     image: {
-      src: string;
-      alt: string;
+      src: string,
+      alt: string,
     },
     description;
 
@@ -181,8 +188,4 @@ function SplitComponent(props: SliptComponentProps) {
 }
 
 export default SplitComponent;
-
 ```
-
-
-
