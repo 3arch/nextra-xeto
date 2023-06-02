@@ -44,7 +44,7 @@ Once cloned, your root and subdirectories will look like this -
 From your root you can call the xeto tools through the bin directory. You may need to open up file permissions for execution using chmod -  
 
 ```bash copy filename="Command Line"
-> chmod +x ./bin/*
+chmod +x ./bin/*
 ```
 
 ---
@@ -54,7 +54,10 @@ From your root you can call the xeto tools through the bin directory. You may ne
 The env call returns the libraries currently in scope -  
 
 ```bash copy filename="Command Line"
-> bin/xeto env
+bin/xeto env
+```
+
+```bash copy filename="Command Line Output Result"
 === XetoEnv ===
 Lib Path:
   rootDir/lib/xeto
