@@ -1,0 +1,24 @@
+{
+  "index": {
+    "display":"hidden",
+    "title":"foo"
+  },  
+  "-- ": {
+    "type": "separator",
+    "title": "Design System Ideas"
+    },
+    "AtomicDesign": "Atomic Design",
+    "CssVariables": "CSS Variables",   
+    "Icons": "Icon Library",
+    "ColorPalette": "Color Palette",
+    "--": {
+      "type": "separator",
+      "title": "Atoms"
+    },
+    "Elements":"",
+    "--  ": {
+      "type": "separator",
+      "title": "Molecules"
+    },
+    "Widgets":""
+  }

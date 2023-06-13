@@ -1,0 +1,136 @@
+import Image from "next/image";
+
+# Atomic Design
+[Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/) is a methodology for building user interfaces that breaks the design down into its smallest building blocks called "Atoms". These atoms are then combined to form larger and more complex UI elements, such as "Molecules", "Organisms", "Templates" and "Pages". The idea behind Atomic Design is to create a scalable and reusable system that allows you to easily create new UI components by combining existing ones, rather than starting from scratch each time. This helps to ensure consistency across the entire interface while also making it easier to maintain and update the codebase over time. By breaking the interface into smaller pieces, developers can work more efficiently and collaborate more effectively with designers. Overall, Atomic Design encourages modularity, reusability, and scalability in UI development.
+
+You can learn more about Atomic Design in the [official documentation](https://atomicdesign.bradfrost.com/chapter-2/).
+
+<div className="flex items-center justify-center ">
+  <img 
+    src="/resources/screenshots/atomic-design-process.png"
+    alt="Atomic Design"
+    width={650}
+    height={650}
+    className="pt-10 rounded-lg shadow-xl"
+  />
+</div>
+
+Below is a brief overview of the different levels of Atomic Design.
+
+<div className="flex items-center justify-center ">
+  <img 
+    src="/resources/screenshots/instagram-atomic.png"
+    alt="Atomic Design"
+    width={650}
+    height={650}
+    className="pt-10 rounded-lg shadow-xl"
+  />
+</div>
+
+
+## Atoms
+
+Atoms are the smallest building blocks of a UI, such as buttons, input fields or icons. They are individual HTML elements and should be designed with reusability in mind.
+
+Example: A simple button component can be considered an Atom.
+
+```html
+<Button>
+  Click Me
+</Button>
+```
+
+## Molecules
+
+Molecules are combinations of Atoms that work together as a more complex UI element, such as a search bar, a navigation menu or a form field.
+
+Example: A search bar component can be considered a Molecule.
+
+```html
+<SearchBar>
+  <Input type="text" />
+  <Button>Search</Button>
+</SearchBar>
+```
+
+## Organisms
+
+Organisms are more complex UI components made up of Molecules and Atoms. They are higher-level representations of a UI component with its own properties and functionality.
+
+Example: A product card component can be considered an Organism.
+
+```html
+<ProductCard image="product.jpg" title="Product Title" price="9.99">
+  <Button>Add to Cart</Button>
+</ProductCard>
+```
+
+## Templates
+
+Templates are higher-level representations of a layout containing multiple generic components like Organisms, Molecules and Atoms arranged together to form a page layout. They define the overall design structure and style of a web page.
+
+Example: A header and footer navigation with placeholder content in between can be considered a template.
+
+```html
+<header>
+  <Navigation />
+</header>
+
+<main>
+  <Hero />
+  <ProductsList />
+</main>
+
+<footer>
+  <FooterNav />
+</footer>
+```
+
+## Pages
+
+Pages are specific instances of templates that include real content. They are the final output seen by users, which combine data with the template layout to create unique views for each page.
+
+Example: The home page or product page of a website is a specific instance of a template with actual content.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Page - My Website</title>
+</head>
+<body>
+  <header>
+    <Navigation />
+  </header>
+
+  <main>
+    <Hero />
+    <ProductsList />
+  </main>
+
+  <footer>
+    <FooterNav />
+  </footer>
+</body>
+</html>
+```
+
+## Pages verses Templates
+
+In atomic design the difference between Templates and Pages can be subtle. However, they do serve different purposes in the design process.
+
+Templates are layouts that define the structure, layout and behavior of a group of related UI components like organisms, molecules, and atoms. A Template is usually generic and not specific to any content. It defines the overall design system and style, and acts as a blueprint for different pages.
+
+On the other hand, Pages are specific instances of Templates that contain real content. They represent concrete views for respective pages and screens. Typically, Pages contain actual data or content relevant to a particular use case, while following a predefined layout and structure provided by Templates.
+
+So while Templates define the style and structure of an interface, Pages use them to create specific content-focused instances.
+
+## Pages needed to Support
+
+We will be designing the Application to work for the below items. We want based on the Xeto types to have the UI work for all of these items. The would include SKy Spark, or a FUll on system like VS COde Editor, meaning a complex tool
+
+- Blog
+- Website
+- Doc / API Docs Including Auto Generated Docs
+- Simple Single Page App for web apps - 
+- Complex Single Page App - LIke FIN or VS Code Editor.

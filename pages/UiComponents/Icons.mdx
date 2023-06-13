@@ -1,0 +1,82 @@
+# Icon Designs
+
+We have made progress in designing new icons for our project. After careful consideration, we have selected an open source library that we believe will be a great fit for our needs.
+
+The library is called Lucide, and it features a wide variety of icons across different categories. We particularly like the animal icons, which can be found here: https://lucide.dev/icons/categories#animals
+
+Using an established library like Lucide will save us time and effort while ensuring consistent and professional-looking icons throughout our project.
+
+<div className="flex items-center justify-center ">
+  <img 
+    src="/resources/screenshots/LucideIcons.png"
+    alt="Radix Colors"
+    width={650}
+    height={650}
+    className="pt-10 rounded-lg shadow-xl"
+  />
+</div>
+
+## Categories and Tags
+
+We are trying to figure out the best way to model the Icons in Xeto. Jason likes categories and tags, and Brian thinks just tags would be better. 
+
+Below is the Luicide Library design, were there is a `JSON` file and `SVG` file per icon.
+
+```json filename="JSON Icon File accessibility"
+{
+  "$schema": "../icon.schema.json",
+  "contributors": [
+    "karsa-mistmere",
+    "jguddas"
+  ],
+  "tags": [
+    "disability",
+    "disabled",
+    "dda",
+    "wheelchair"
+  ],
+  "categories": [
+    "accessibility",
+    "medical"
+  ]
+}
+```
+
+```html filename="SVG Icon File for accessibility"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="16" cy="4" r="1" />
+  <path d="m18 19 1-7-6 1" />
+  <path d="m5 8 3-3 5.5 3-2.36 3.5" />
+  <path d="M4.24 14.5a5 5 0 0 0 6.88 6" />
+  <path d="M13.76 17.5a5 5 0 0 0-6.88-6" />
+</svg>
+```
+
+## Xeto Design Solution
+
+```html filename="Xeto Icon Model for accessibility"
+Accessibility: Icon{
+    disability
+    disabled
+    dda
+    wheelchair
+    accessibility
+    medical
+    svg:"""
+        <circle cx="16" cy="4" r="1" />
+        <path d="m18 19 1-7-6 1" />
+        <path d="m5 8 3-3 5.5 3-2.36 3.5" />
+        <path d="M4.24 14.5a5 5 0 0 0 6.88 6" />
+        <path d="M13.76 17.5a5 5 0 0 0-6.88-6" />
+  """
+```

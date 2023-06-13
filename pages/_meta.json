@@ -29,8 +29,8 @@
             }
         }
     },
-    "about": {
-        "title": "About",
+    "UiComponents": {
+        "title": "UI Components",
         "type": "page"
     }
 }

@@ -1,0 +1,46 @@
+This probably isn't 100% complete for what we need in phase 1.  But it's the basics to flush out the component hierarchy...
+
+Controls/Core:
+- Text (styled text)
+- Button
+- Select (ListBox that displays items in scrollable container)
+- SelectButton (dropdown list picker)
+- ToggleButton/Checkbox/Switch/Radio (these could be collapsed into Button/Select)
+- Menu (maybe menu item, or maybe just list of Actions)
+- ScrollBar (currently only used by ScrollBox, could hide)
+- ProgressBar
+
+Text Input
+- All these subtype from TextInput 
+- TextField (simple one line text input)
+- TextArea (simple plain multi-line text)
+- TextEditor (multi-line, syntax color coding, etc)
+- TextDropdown (combobox but without box in name???)
+
+Layout
+- All of these subtype from Box
+- VBox (column, vertical)
+- HBox( row, horizontal)
+- EdgeBox (top/bottom using pref h, left/right using pref w, center fill)
+- ScrollBox (contains 1 thing that may overflow)
+- SashBox (slidable resizable split pane)
+- GridBox (simplified CSS grid layout)
+- AccordionBox (or collapsable box)
+
+Z-Order Stuff
+- Popup: dialog overlay with single click in background close
+- Dialog: model/non-model - not sure how sophisticated we need
+
+Document
+- Paragraph (`<p>` with embedded span styling)
+- Heading (h1, h2, ...h6)
+- BullletList/NumberedList (ul, ol bullet/numbers lists, problematic term with ListBox/Select????)
+
+Specials
+- Tree (lazily bound data model w/ item renderer)
+- Table (will need full feature of SkySpark)
+- Chart (all the features of SkySpark)
+- Card (I'm not sure props...)
+
+One library I like how they modeled all the "selectable" stuff is this:
+https://retool.com/components/#select-inputs
